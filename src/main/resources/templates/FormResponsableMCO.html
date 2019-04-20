@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template1"> 
+<head>
+<meta charset="utf-8"/>
+<title>responsableMCO</title>
+  <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+  th:href="@{/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" type="text/css" href="../static/style.css"
+  th:href="@{/css/style.css}"/>
+</head>
+<body>
+<!-- afficher un formulaire de saisi -->
+<div layout:fragment="content">
+	<div class=" spacer col-md-6 col-xs-12" >   <!-- //spacer ne fonctionne pas -->
+		<div class="panel panel-default">
+			<div class="panel-heading">Saisie d'un RESPONSABLE</div>
+			<div class="panel-body">
+				<form th:action="@{saveres}" method="post">
+					<div class="form-group">
+						<label>Nom:</label>
+					
+					    <input class="form-control" type="text" name="resName"
+					    th:value="${responsableMCO.resName}"/>
+					    <span class="red" th:errors="${responsableMCO.resName}"></span>
+					</div>
+					<div class="form-group">
+						<label>Prenom:</label>
+					
+					    <input class="form-control" type="text" name="resPrenom"
+					    th:value="${responsableMCO.resPrenom}"/>
+					     <span class="red" th:errors="${responsableMCO.resPrenom}"></span>
+					</div>
+					<div class="form-group">
+						<label>Email:</label>
+					
+					    <input class="form-control" type="text" name="resEmail"
+					    th:value="${responsableMCO.resEmail}"/>
+					     <span class="red" th:errors="${responsableMCO.resEmail}"></span>
+					</div>
+					<div class="form-group">
+						<label>NumTelephone:</label>
+					
+					    <input class="form-control" type="text" name="resNumTel"
+					    th:value="${responsableMCO.resNumTel}"/>
+					     <span class="red" th:errors="${responsableMCO.resNumTel}"></span>
+					</div>
+					<button type="submit" class="btn btn-primary">save</button>
+				</form>
+			</div>
+		</div>
+		</div>
+	
+	</div>
+	
+</body>
+</html>

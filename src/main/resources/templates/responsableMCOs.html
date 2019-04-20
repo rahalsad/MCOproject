@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8" />
+<title>responsableMCO</title>
+<!-- <link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css"
+href="../static/css/style.css"
+th:href="@{/css/style.css}"/> -->
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body class="container spacer">
+	
+		<div class="container" layout:fragment="content" >
+			<form th:action="@{/respo}" method="get">
+				<label>Mot Clé:</label> <input type="text" name="mcl"
+					th:value="${mcl}" />
+				<button class="btn btn-primary">Chercher</button>
+			</form>
+			<ul>
+			<li><a style="color:#000000" th:href="@{/formres}">Ajouter membre</a></li>
+
+		</ul>
+		<div class="container">
+			<h3>Liste Des responsables MCO</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Prénom</th>
+						<th>Email</th>
+						<th>Telephone</th>
+					</tr>
+
+				</thead>
+				<tbody>
+					<tr th:each="r:${listResponsableMCOs}">
+						<td th:text="${r.resId}"></td>
+						<td th:text="${r.resName}"></td>
+						<td th:text="${r.resPrenom}"></td>
+						<td th:text="${r.resEmail}"></td>
+						<td th:text="${r.resNumTel}"></td>
+						<td><a th:href="@{editres(id=r.resId)}"></a></td>
+						<td><a th:href="@{editres(resId=${r.resId},page=${pageCourante},size=${size},mcl=${mcl})}">Edit</a></td>
+					    <td><a onclick="return confirm('Etes vous sure?')"
+							th:href="@{deleteres(resId=${r.resId},page=${pageCourante},size=${size},mcl=${mcl})}">Delete</a></td>
+					</tr>
+
+				</tbody>
+
+			</table>
+		</div>
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li th:class="${pageCourante}==${status.index}?'active':''"
+					th:each="p,status:${pages}"><a
+					th:href="@{index(page=${status.index},size=${size},mc=${mc})}"
+					th:text="${status.index}"></a>
+				</li>
+			</ul>
+		</div>
+		</div>
+	
+
+</body>
+</html>

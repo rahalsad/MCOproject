@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8" />
+<title>sprogramme</title>
+
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body class="container spacer">
+	
+		<div class="container" layout:fragment="content" >
+			<form th:action="@{/prog}" method="get">
+				<label>Mot Clé:</label> <input type="text" name="mc4"
+					th:value="${mc4}" />
+				<button class="btn btn-primary">Chercher</button>
+			</form>
+			<ul>
+			<li><a style="color:#000000" th:href="@{/formprog}">Ajouter sprogrammes</a></li>
+
+		</ul>
+		<div class="container">
+			<h3>Liste Des sous programmes</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>libelle</th>
+						<th>descriptif</th>
+					
+					</tr>
+
+				</thead>
+				<tbody>
+					<tr th:each="s:${listSProgrammes}">
+						<td th:text="${s.progId}"></td>
+						<td th:text="${s.libelle}"></td>
+						<td th:text="${s.descriptif}"></td>
+						
+						<td><a th:href="@{editprog(id=s.progId)}"></a></td>
+						<td><a th:href="@{editprog(progId=${s.progId},page=${pageCourante},size=${size},mc4=${mc4})}">Edit</a></td>
+					    <td><a onclick="return confirm('Etes vous sure?')"
+							th:href="@{deleteprog(progId=${s.progId},page=${pageCourante},size=${size},mc4=${mc4})}">Delete</a></td>
+					</tr>
+
+				</tbody>
+
+			</table>
+		</div>
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li th:class="${pageCourante}==${status.index}?'active':''"
+					th:each="page,status:${pages}"><a
+					th:href="@{prog(page=${status.index},size=${size},mc4=${mc4})}"
+					th:text="${status.index}"></a>
+				</li>
+			</ul>
+		</div>
+		</div>
+	
+
+</body>
+</html>
