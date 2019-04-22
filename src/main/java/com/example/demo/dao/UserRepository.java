@@ -11,7 +11,9 @@ import org.springframework.security.config.authentication.UserServiceBeanDefinit
 
 import com.example.demo.entities.Users;
 
-public interface UserRepository extends JpaRepository<Users, Integer> {
+public interface UserRepository extends JpaRepository<Users, Long> {
+	
+	 Users findByUsername(String username);
 
 }
 

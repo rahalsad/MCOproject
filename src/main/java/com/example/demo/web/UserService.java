@@ -9,20 +9,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.example.demo.dao.UserRepository;
+import com.example.demo.entities.Initiateur;
 import com.example.demo.entities.Users;
+/*import com.example.demo.validator.UserValidator;*/
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import org.springframework.web.context.request.WebRequest;
+
+@Controller
 	public class UserService  {
-	@Autowired
+
+	 
+/*	@Autowired
 	private UserRepository userRepository ;
 	//@Secured(value= {"ROLE_ADMIN"})
 	@RequestMapping(value = "/saveUtilisateurs",method = RequestMethod.GET)
@@ -30,13 +42,13 @@ import org.springframework.web.bind.annotation.RestController;
 		return userRepository.save(u);
 	}
 	
-	//pour returner une page des utilisateurs
-	//@Secured(value= {"ROLE_ADMIN","ROLE_UTILISATEUR"})
-	@RequestMapping(value = "/utilisateurs")
+	//pour returner une page des utilisateurs*/
+	/*@Secured(value= {"ROLE_ADMIN","ROLE_UTILISATEUR"})
+	@RequestMapping(value = "/inititeurs")
 	public Page<Users> listUtilisateurs(int page,int size){
-		return userRepository.findAll(new PageRequest(page, size));
+		return UserRepository.find(new PageRequest(page, size));
 		
-	}
+	}*/
 	
 	//permet returner l'utilisateur et ses roles qui est authentifier
 	@RequestMapping(value="/getLogedUser")
@@ -57,13 +69,17 @@ import org.springframework.web.bind.annotation.RestController;
 		return params;
 	}
 	@RequestMapping(value="/")
-	public String home(){
+	public String home(Model model){
+
 	return "redirect:/index";
 	}
 	
-	
-	/*@RequestMapping(value="/login")
-	public String login(){
-	return "login.html"}*/
-	
+	@RequestMapping(value = "/registration", method = RequestMethod.GET)
+	public String showRegistrationForm(WebRequest request, Model model) {
+	    Users user = new Users();
+	    model.addAttribute("user", user);
+	    return "registration";
+	}
 }
+	
+	
