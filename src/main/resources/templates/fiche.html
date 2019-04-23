@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template1"> 
+
+<head>
+<meta charset="utf-8"/>
+<title>Demande de Maintenance </title>
+	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+	th:href="@{/css/style.css}"/>
+</head>
+
+
+<body>
+<!-- afficher un formulaire de saisi -->
+<div layout:fragment="content">
+	<div class=" spacer col-md-6 col-xs-12" >   <!-- //spacer ne fonctionne pas -->
+		<div class="panel panel-default">
+			<div class="panel-heading">Demande de Maintenance</div>
+			<div class="panel-body">
+				<form th:action="@{save}" method="post">
+					<div class="form-group">
+						<label>Nom:</label>
+					
+					    <input class="form-control" type="text" name="iniName"
+					    th:value="${Fiche.iniName}"/>
+					    <span class="red" th:errors="${Fiche.iniName}"></span>
+					</div>
+					<div class="form-group">
+						<label>Prenom:</label>
+					
+					    <input class="form-control" type="text" name="iniPrenom"
+					    th:value="${Fiche.iniPrenom}"/>
+					     <span class="red" th:errors="${Fiche.iniPrenom}"></span>
+					</div>
+					<div class="form-group">
+						<label>Direction:</label>
+					
+					    <input class="form-control" type="text" name="NomDirection"
+					    th:value="${Fiche.NomDirection}"/>
+					     <span class="red" th:errors="${Fiche.NomDirection}"></span>
+					</div>
+					<div class="form-group">
+						<label>Département:</label>
+					
+					    <input class="form-control" type="text" name="NomDepart"
+					    th:value="${Fiche.NomDepart}"/>
+					     <span class="red" th:errors="${Fiche.NomDepart}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label>Application:</label>
+					
+					    <input class="form-control" type="text" name="NomApplication"
+					    th:value="${Fiche.NomApplication}"/>
+					     <span class="red" th:errors="${Fiche.NomApplication}"></span>
+					</div>
+					
+					
+					<div class="form-group">
+						<label>Intitulé de la maintenance:</label>
+					
+					    <input class="form-control" type="text" name="intituleMaintenance"
+					    th:value="${Fiche.intituleMaintenance}"/>
+					     <span class="red" th:errors="${Fiche.intituleMaintenance}"></span>
+					</div>
+					
+				<!-- 	<div class="form-group">
+						<label>Date Envoi:</label>
+					
+					    <input class="form-control" type="date" name="iniName"
+					    th:value="${Fiche.dateEnvoi}"/>
+					    <span class="red" th:errors="${Fiche.dateEnvoi}"></span>
+					</div> -->
+					
+					
+					
+					<button type="submit" class="btn btn-primary">envoyer</button>
+				</form>
+			</div>
+		</div>
+		</div>
+	
+	</div>
+<!--   <form action="/"> -->
+
+<!--     <label> Demande de Maintenance</label> -->
+<!--     <label for="nom">Nom: </label> -->
+<!--     <input type="text" value="nom" name="nom" /> -->
+
+<!--     <label for="prenom">Prenom: </label> -->
+<!--     <input type="text" value="prenom" name="prenom" /> -->
+
+
+
+
+
+<!--     <label>Nom Direction: </label> -->
+<!--     <select name="direction" size="1"> -->
+     <!--     <option>Risque et support</option>
+        <option>Banque de financement et d'investissement</option>
+        <option>Banque de Détail</option>
+        <option>Direction Production</option>
+        <option>Centre de Servicse</option>-->
+<!--     </select> -->
+<!--     <br></br> -->
+<!-- <!--DSI: Risque et Support--> 
+<!--     <label>Nom Departement: </label> -->
+<!--     <select name="Departement" size="1"> -->
+        <!-- <option>Comptabilité,Finance et Pilotage</option>
+        <option>Activités support</option>
+		<option>Risque et conformité</option>
+        <option>Décisionnel et Reporting</option>
+<!--     </select> -->
+<!-- <!--DSI: BFI--> 
+<!-- <select name="Departement" size="1"> -->
+      <!--   <option>Département Activités Marchés de Capitaux</option>
+        <option>Flux et Trade</option>
+<!--     </select> -->
+<!-- <!--DSI: Banque de Détail--> 
+<!--     <select name="Departement" size="1"> -->
+       <!--  <option>Activités B2P</option>
+        <option>Activités BPME</option>
+		<option>Innovation et Multicanal</option>
+        <option>Financement</option>
+<!--     </select> -->
+
+<!-- <!--DSI: Production--> 
+<!--     <select name="Departement" size="1"> -->
+       <!--  <option>Bases de Données, Planification et Pilotage des Systèmes</option>
+        <option>Administartion des Solutions</option>
+		<option>Administartion de la Plateforme de la Banque des Marchès</option>
+<!--     </select> -->
+
+<!--  <!--DSI: Centre de Services--> 
+<!--     <select name="Departement" size="1"> -->
+        <!-- <option>Support Utilisateur</option>   
+<!--     </select> -->
+
+<!--     <label for="Application">Nom de L'application: </label> -->
+<!--     <input type="text" value="application" name="application" /> -->
+
+
+
+
+<!--     <label for="IntituleMaintenance">Intitulé de la maintenace: </label> -->
+   <!--  <textarea name="textarea">Détails:</textarea>
+
+
+<!--       <label>Reset: </label> -->
+<!--     <input type="reset" value="annuler" name="annuler" /> -->
+
+<!--      <label>File: </label> -->
+<!--     <input type="file" value="file" name="file" /> -->
+
+
+<!-- </form> -->
+
+<script type="text/javascript">     d = new Date();   document.write("<p>Date : <span style='color:#8aa;'>");   document.write(d.toLocaleDateString());   document.write("</span></p>"); </script>
+ 
+<SCRIPT>
+    document.write("Cette page a été modifiée le : " + document.lastModified)
+</SCRIPT>
+</body>
+</html>
