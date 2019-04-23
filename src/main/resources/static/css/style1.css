@@ -1,22 +1,8 @@
-.red{
-	color:red
-}
-.spacer{
-	margin-top: 40px
-}
-.navbar {
- 
-background-color:#808080;
- 
-}
-.navbar-brand {
- color: #000000;
-}
-<<<<<<< HEAD
+@CHARSET "utf-8";
 /* body{ */
 /*    background-image: url(/images/bcp11.jpg); */
 /* } */
-/* .login-wrap{
+.login-wrap{
 	width:100%;
 	margin:auto;
 	max-width:525px;
@@ -30,7 +16,7 @@ background-color:#808080;
 	height:100%;
 	position:absolute;
 	padding:90px 70px 50px 70px;
-    background:rgb(0,0,128); 
+/*     background:rgb(0,0,128);  */
 }
 input[type=text], input[type=password] {
   width: 100%;
@@ -56,7 +42,7 @@ input[type=text], input[type=password] {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-} */
+}
 
 
 	
@@ -101,7 +87,7 @@ input[type=text], input[type=password] {
 /*   width: 40%; */
 /*   border-radius: 50%;} */
 
-/* button {
+button {
   background-color: #004080;
   color: white;
   padding: 10px 15px;
@@ -133,6 +119,4 @@ span.psw {
 } 
 .red{
 	color: red ;
-} */
-=======
->>>>>>> branch 'master' of https://github.com/rahalsad/MCOproject
+}
