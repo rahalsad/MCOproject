@@ -1,4 +1,4 @@
-package com.example.demo.validator;
+/*package com.example.demo.validator;
 
 import com.example.demo.entities.Users;
 
@@ -29,7 +29,7 @@ public class UserValidator implements Validator {
         if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
             errors.rejectValue("username", "Size.userForm.username");
         }
-        if (userService.findByUsername(user.getUserId()) != null) {
+        if (userService.findByUsername(user.getUsername()) != null) {
             errors.rejectValue("username", "Duplicate.userForm.username");
         }
 
@@ -43,3 +43,4 @@ public class UserValidator implements Validator {
         }
     }
 }
+*/
