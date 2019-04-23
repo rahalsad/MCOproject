@@ -17,7 +17,7 @@ th:href="@{/css/style.css}"/> -->
 <body class="container spacer">
 	
 		<div class="container" layout:fragment="content" >
-			<form th:action="@{/dep}" method="get">
+			<form th:action="@{dep}" method="get">
 				<label>Mot Clé:</label> <input type="text" name="mc2"
 					th:value="${mc2}" />
 				<button class="btn btn-primary">Chercher</button>
@@ -34,7 +34,7 @@ th:href="@{/css/style.css}"/> -->
 						<th>Id</th>
 						<th>Nom du departement</th>
 						<th>Nom du directeur</th>
-					
+					    <th>Nom de la direction</th>
 					</tr>
 
 				</thead>
@@ -43,7 +43,7 @@ th:href="@{/css/style.css}"/> -->
 						<td th:text="${p.depId}"></td>
 						<td th:text="${p.depName}"></td>
 						<td th:text="${p.directDep}"></td>
-						
+						<td th:text="${p.directionName}"></td>
 						<td><a th:href="@{editdep(id=p.depId)}"></a></td>
 						<td><a th:href="@{editdep(depId=${p.depId},page=${pageCourante},size=${size},mc2=${mc2})}">Edit</a></td>
 					    <td><a onclick="return confirm('Etes vous sure?')"

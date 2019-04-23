@@ -32,6 +32,13 @@ layout:decorator="template1">
 					    th:value="${departement.directDep}"/>
 					     <span class="red" th:errors="${departement.directDep}"></span>
 					</div>
+					<div class="form-group">
+						<label>Nom de la diretion</label>
+					
+					    <input class="form-control" type="text" name="directionName"
+					    th:value="${departement.directionName}"/>
+					     <span class="red" th:errors="${departement.directionName}"></span>
+					</div>
 					
 					<button type="submit" class="btn btn-primary">save</button>
 				</form>

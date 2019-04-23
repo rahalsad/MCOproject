@@ -17,7 +17,7 @@ th:href="@{/css/style.css}"/> -->
 <body class="container spacer">
 	
 		<div class="container" layout:fragment="content" >
-			<form th:action="@{/respo}" method="get">
+			<form th:action="@{respo}" method="get">
 				<label>Mot Clé:</label> <input type="text" name="mcl"
 					th:value="${mcl}" />
 				<button class="btn btn-primary">Chercher</button>

@@ -15,6 +15,7 @@ public class Departement implements Serializable{
 	 private Long depId;
 	 private String depName;
 	 private String directDep;
+	 private String directionName;
 	 @ManyToOne(cascade = CascadeType.ALL)
 	 @JoinColumn(name="CODE_DIR")
 	 private Direction direction;
@@ -26,6 +27,7 @@ public class Departement implements Serializable{
 		super();
 		this.depName = depName;
 		this.directDep = directDep;
+		this.directionName = directionName;
 		this.direction = direction;
 	}
 	
@@ -46,6 +48,12 @@ public class Departement implements Serializable{
 	}
 	public void setDirectDep(String directDep) {
 		this.directDep = directDep;
+	}
+	public String getDirectionName() {
+		return directionName;
+	}
+	public void setDirectionName(String directionName) {
+		this.directionName = directionName;
 	}
 	public Direction getDirection() {
 		return direction;

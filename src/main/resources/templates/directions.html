@@ -17,7 +17,7 @@ th:href="@{/css/style.css}"/> -->
 <body class="container spacer">
 	
 		<div class="container" layout:fragment="content" >
-			<form th:action="@{/direct}" method="get">
+			<form th:action="@{direct}" method="get">
 				<label>Mot Clé:</label> <input type="text" name="mc1"
 					th:value="${mc1}" />
 				<button class="btn btn-primary">Chercher</button>
@@ -29,7 +29,7 @@ th:href="@{/css/style.css}"/> -->
 	
 		<div class="container">
 			<h3>Liste Des directions</h3>
-			<table class="table table-striped">
+			<table class="table table-striped table-bordered table-responsive" role="grid">
 				<thead>
 					<tr>
 						<th>Id</th>
@@ -41,7 +41,7 @@ th:href="@{/css/style.css}"/> -->
 
 				</thead>
 				<tbody>
-					<tr th:each="d:${listDirections}">
+					<tr role="row" class="odd" th:each="d:${listDirections}">
 						<td th:text="${d.directId}"></td>
 						<td th:text="${d.directName}"></td>
 						<td th:text="${d.directorName}"></td>
@@ -50,7 +50,7 @@ th:href="@{/css/style.css}"/> -->
 						<td><a th:href="@{editdir(directId=${d.directId},page=${pageCourante},size=${size},mc1=${mc1})}">Edit</a></td>
 					    <td><a onclick="return confirm('Etes vous sure?')"
 							th:href="@{deletedir(directId=${d.directId},page=${pageCourante},size=${size},mc1=${mc1})}">Delete</a></td>
-							
+						
 					</tr>
 
 				</tbody>

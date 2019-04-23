@@ -10,10 +10,10 @@ layout:decorator="template1">
   <link rel="stylesheet" type="text/css" href="../static/style.css"
   th:href="@{/css/style.css}"/>
 </head>
-<body>
+<body class="container spacer">
 <!-- afficher un formulaire de saisi -->
 <div layout:fragment="content">
-	<div class=" spacer col-md-6 col-xs-12" >   <!-- //spacer ne fonctionne pas -->
+	<div  >   <!-- //spacer ne fonctionne pas -->
 		<div class="panel panel-default">
 			<div class="panel-heading">Saisie d'un initiateur</div>
 			<div class="panel-body">

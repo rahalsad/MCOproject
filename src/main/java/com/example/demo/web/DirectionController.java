@@ -71,4 +71,5 @@ public class DirectionController {
 		return "ConfirmationDir"; //LE NOM DE LA VUE.HTML
 	
 	}
+	
 }
