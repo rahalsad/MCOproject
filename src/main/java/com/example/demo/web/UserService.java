@@ -80,6 +80,9 @@ import org.springframework.web.context.request.WebRequest;
 	    model.addAttribute("user", user);
 	    return "registration";
 	}
+	
+	
+	
 }
 	
 	
