@@ -6,18 +6,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import com.example.demo.dao.ApplicationRepository;
+
 import com.example.demo.dao.DepartementRepository;
 import com.example.demo.dao.DirectionRepository;
 import com.example.demo.dao.InitiateurRepository;
 import com.example.demo.dao.ResponsableMCORepository;
-import com.example.demo.dao.SProgrammeRepository;
-import com.example.demo.entities.Application;
+
+
 import com.example.demo.entities.Departement;
 import com.example.demo.entities.Direction;
 import com.example.demo.entities.Initiateur;
 import com.example.demo.entities.ResponsableMCO;
-import com.example.demo.entities.SProgramme;
 
 
 @SpringBootApplication
@@ -33,9 +32,8 @@ public class TestApplication implements CommandLineRunner {
 	@Autowired
 	private ResponsableMCORepository responsableMCORepository;
 	@Autowired
-	private ApplicationRepository applicationRepository;
-	@Autowired
-	private SProgrammeRepository sProgrammeRepository;
+	
+	
 
 	
 	public static void main(String[] args) {

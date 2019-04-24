@@ -1,6 +1,6 @@
 package com.example.demo.web;
 
-import java.util.List;
+
 
 import javax.validation.Valid;
 
@@ -10,15 +10,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.example.demo.dao.DepartementRepository;
-import com.example.demo.dao.InitiateurRepository;
 import com.example.demo.entities.Departement;
-import com.example.demo.entities.Initiateur;
 
 
 @Controller
