@@ -4,15 +4,11 @@ import java.io.Serializable;
 
 import java.util.Date;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Fiche implements Serializable  {
@@ -28,13 +24,9 @@ public class Fiche implements Serializable  {
 	private String NomDepart;
 	private String NomApplication;
 	private String intituleMaintenance;
-	 @DateTimeFormat(pattern = "dd/MM/yyyy")
-	  // This is for bind Date with @ModelAttribute
-	    @Temporal(TemporalType.DATE)
-	    @Column(name = "inc_date")
-	  
-	 	private Date dateEnvoi;
-	 	private Date dateModif;
+	private Date dateModif;
+	private String dateEnvoi;
+	 	
 	 	
 	 	public Fiche() {
 			super();
@@ -42,7 +34,7 @@ public class Fiche implements Serializable  {
 			// TODO Auto-generated constructor stub
 	 	
 	 	public Fiche(String iniName, String iniPrenom, String nomDirection, String nomDepart, String nomApplication,
-				String intituleMaintenance, Date dateEnvoi, Date dateModif) {
+				String intituleMaintenance, String dateEnvoi, Date dateModif) {
 			super();
 			this.iniName = iniName;
 			this.iniPrenom = iniPrenom;
@@ -58,7 +50,7 @@ public class Fiche implements Serializable  {
 	 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Long ficheid) {
 		this.id = id;
 	}
 	public String getIniName() {
@@ -97,10 +89,10 @@ public class Fiche implements Serializable  {
 	public void setIntituleMaintenance(String intituleMaintenance) {
 		this.intituleMaintenance = intituleMaintenance;
 	}
-	public Date getDateEnvoi() {
+	public String getDateEnvoi() {
 		return dateEnvoi;
 	}
-	public void setDateEnvoi(Date dateEnvoi) {
+	public void setDateEnvoi(String dateEnvoi) {
 		this.dateEnvoi = dateEnvoi;
 	}
 	public Date getDateModif() {

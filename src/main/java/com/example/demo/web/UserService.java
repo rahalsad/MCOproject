@@ -74,6 +74,12 @@ import org.springframework.web.context.request.WebRequest;
 	return "redirect:/index";
 	}
 	
+/*	@RequestMapping(value="/fiche")
+	public String fiche(Model model){
+
+	return "redirect:/fiche";
+	}*/
+	
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String showRegistrationForm(WebRequest request, Model model) {
 	    Users user = new Users();

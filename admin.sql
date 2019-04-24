@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 20 avr. 2019 à 21:45
+-- Généré le :  mer. 24 avr. 2019 à 07:59
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -25,29 +25,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `application`
---
-
-DROP TABLE IF EXISTS `application`;
-CREATE TABLE IF NOT EXISTS `application` (
-  `app_id` bigint(20) NOT NULL,
-  `app_name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`app_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `application`
---
-
-INSERT INTO `application` (`app_id`, `app_name`) VALUES
-(58, 'app77'),
-(56, 'CDRBJ'),
-(70, 'cc'),
-(69, 'app1');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `departement`
 --
 
@@ -56,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `departement` (
   `dep_id` bigint(20) NOT NULL,
   `dep_name` varchar(255) DEFAULT NULL,
   `direct_dep` varchar(255) DEFAULT NULL,
+  `direction_name` varchar(255) DEFAULT NULL,
   `code_dir` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`dep_id`),
   KEY `FKbgek58ns2oswbu56spxw9sg57` (`code_dir`)
@@ -65,19 +43,21 @@ CREATE TABLE IF NOT EXISTS `departement` (
 -- Déchargement des données de la table `departement`
 --
 
-INSERT INTO `departement` (`dep_id`, `dep_name`, `direct_dep`, `code_dir`) VALUES
-(1, 'Comptabilité, Finance & Pilotage', 'Fatima ASSOURI', 2),
-(3, 'Activités Marchés de Capitaux', 'Mohamed HAMMADI', 4),
-(5, 'Comptabilité, Finance & Pilotage', 'Fatima ASSOURI', 6),
-(7, 'Activités Marchés de Capitaux', 'Mohamed HAMMADI', 8),
-(9, 'Comptabilité, Finance & Pilotage', 'Fatima ASSOURI', 10),
-(11, 'Activités Marchés de Capitaux', 'Mohamed HAMMADI', 12),
-(22, 'Comptabilité, Finance & Pilotage', 'Fatima ASSOURI', 23),
-(24, 'Activités Marchés de Capitaux', 'Mohamed HAMMADI', 25),
-(35, 'Comptabilité, Finance & Pilotage', 'Fatima ASSOURI', 36),
-(37, 'Activités Marchés de Capitaux22', 'Mohamed HAMMADI', NULL),
-(51, 'Comptabilité, Finance & Pilotage', 'Fatima ASSOURI', 52),
-(53, 'Activités Marchés de Capitaux', 'Mohamed HAMMADI', 54);
+INSERT INTO `departement` (`dep_id`, `dep_name`, `direct_dep`, `direction_name`, `code_dir`) VALUES
+(45, 'Comptabilité, Finance & Pilotage', 'Fatima ASSOURI', 'Risque &Support', 40),
+(46, 'Activités support', 'Othmane MAIMOUNI ', 'Risque &Support', 40),
+(47, 'Risque & conformité', 'Jaouad  EL JAAFARI', 'Risque &Support', 40),
+(48, 'Décisionnel & Reporting', 'Samira BYOUZ', 'Risque &Support', 40),
+(49, 'Activités Marchés de Capitaux', 'Mohamed HAMMADI', 'Banque de Financement et d’Investissement', 41),
+(50, 'Flux & Trade', 'Abdelaziz MARKHO', 'Banque de Financement et d’Investissement', 41),
+(51, 'Activités B2P', 'Abdelghafour MAHER', 'Banque de Détail', 42),
+(52, 'Activités BPME', 'Noureddine DAHBI', 'Banque de Détail', 42),
+(53, 'Innovation & Multicanal', 'Mustapha CHAROF', 'Banque de Détail', 42),
+(54, 'Financement', 'Milouda RADDAOUI', 'Banque de Détail', 42),
+(55, 'Bases de Données, Planification é Pilotage des Systèmes', 'El Mostafa SRHIR', 'Production', 43),
+(56, 'Administration des Solutions', 'El mehdi HABLA', 'Production', 43),
+(57, 'Administration de la Plateforme de la Banque des Marchés', 'Mohamed AZRIDOU', 'Production', 43),
+(58, 'Support Utilisateur', 'El Houssaine FARHI', 'Centre de Services', 44);
 
 -- --------------------------------------------------------
 
@@ -98,18 +78,51 @@ CREATE TABLE IF NOT EXISTS `direction` (
 --
 
 INSERT INTO `direction` (`direct_id`, `direct_name`, `director_name`) VALUES
-(2, 'Risque &Support22', 'Othmane MAIMOUN'),
-(4, 'Banque de Financement et d’Investissement', 'Mustapha ZARAIDI'),
-(6, 'Risque &Support', 'Othmane MAIMOUN'),
-(8, 'Banque de Financement et d’Investissement', 'Mustapha ZARAIDI'),
-(10, 'Risque &Support', 'Othmane MAIMOUN'),
-(12, 'Banque de Financement et d’Investissement', 'Mustapha ZARAIDI'),
-(23, 'Risque &Support', 'Othmane MAIMOUN'),
-(25, 'Banque de Financement et d’Investissement', 'Mustapha ZARAIDI'),
-(36, 'Risque &Support', 'Othmane MAIMOUN'),
-(38, 'Banque de Financement et d’Investissement', 'Mustapha ZARAIDI'),
-(52, 'Risque &Support', 'Othmane MAIMOUN'),
-(54, 'Banque de Financement et d’Investissement', 'Mustapha ZARAIDI');
+(40, 'Risque &Support', 'Othmane MAIMOUNI'),
+(41, 'Banque de Financement et d’Investissement', 'Mustapha ZARAIDI'),
+(42, 'Banque de Détail', 'Mohamed EL AYACHI'),
+(43, 'Production', 'Jalal RGUIG '),
+(44, 'Centre de Services', 'El Mostafa NABLI');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fiche`
+--
+
+DROP TABLE IF EXISTS `fiche`;
+CREATE TABLE IF NOT EXISTS `fiche` (
+  `id` bigint(20) NOT NULL,
+  `nom_application` varchar(255) DEFAULT NULL,
+  `nom_depart` varchar(255) DEFAULT NULL,
+  `nom_direction` varchar(255) DEFAULT NULL,
+  `inc_date` date DEFAULT NULL,
+  `date_modif` datetime DEFAULT NULL,
+  `ini_name` varchar(255) DEFAULT NULL,
+  `intitule_maintenance` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fiche_suivi`
+--
+
+DROP TABLE IF EXISTS `fiche_suivi`;
+CREATE TABLE IF NOT EXISTS `fiche_suivi` (
+  `ref` bigint(20) NOT NULL,
+  `charge_consom` bigint(20) DEFAULT NULL,
+  `charge_estim` bigint(20) DEFAULT NULL,
+  `date_charge` datetime DEFAULT NULL,
+  `date_modif` datetime DEFAULT NULL,
+  `date_prod` datetime DEFAULT NULL,
+  `recep_date` date DEFAULT NULL,
+  `respo` varchar(255) DEFAULT NULL,
+  `taux_avanc` double DEFAULT NULL,
+  `statut` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ref`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -127,6 +140,14 @@ CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
+(59),
+(59),
+(59),
+(59),
+(59),
+(59),
+(59),
+(59),
 (59),
 (59),
 (59),
@@ -153,21 +174,25 @@ CREATE TABLE IF NOT EXISTS `initiateur` (
 --
 
 INSERT INTO `initiateur` (`ini_id`, `ini_email`, `ini_name`, `ini_num_tel`, `ini_prenom`) VALUES
-(17, 'dahbi@gamil.com', 'Dahbi', '0614236958', 'cccc'),
-(18, 'markho@gamil.com', 'Markho', '0631594274', 'bbcc'),
-(19, 'maher@gamil.com', 'Maher', '0658947514', 'acca'),
-(20, 'ayachi@gamil.com', 'Ayachik', '0625694713', 'qqkc'),
-(21, 'hgtf@gamil.com', 'hfgtn', '0614236925', 'gtrn'),
-(30, 'dahbi@gamil.com', 'Dahbi', '0614236958', 'cccc'),
-(31, 'markho@gamil.com', 'Markho', '0631594274', 'bbcc'),
-(32, 'maher@gamil.com', 'Maher', '0658947514', 'acca'),
-(33, 'ayachi@gamil.com', 'Ayachik', '0625694713', 'qqkc'),
-(34, 'hgtf@gamil.com', 'hfgtn', '0614236925', 'gtrn'),
-(46, 'dahbi@gamil.com', 'Dahbi', '0614236958', 'cccc'),
-(47, 'markho@gamil.com', 'Markho', '0631594274', 'bbcc'),
-(48, 'maher@gamil.com', 'Maher', '0658947514', 'acca'),
-(49, 'ayachi@gamil.com', 'Ayachik', '0625694713', 'qqkc'),
-(50, 'hgtf@gamil.com', 'hfgtn', '0614236925', 'gtrn');
+(2, 'omaimouni@cpm.co.ma', 'MAIMOUNI ', '0000000000', 'Othmane '),
+(3, 'fassouri@cpm.co.ma', 'ASSOURI', '0000000000', 'Fatima '),
+(4, 'jeljaafari@cpm.co.ma', 'EL JAAFARI', '0000000000', 'Jaouad  '),
+(5, 'sbyouz@cpm.co.ma', 'BYOUZ', '0000000000', 'Samira '),
+(6, 'mzaraidi@cpm.co.ma', 'ZARAIDI', '0000000000', 'Mustapha'),
+(7, 'mhammadi@cpm.co.ma', 'HAMMADI', '0000000000', 'Mohamed '),
+(8, 'amarkho@cpm.co.ma', 'MARKHO', '0000000000', 'Abdelaziz '),
+(9, 'melayachi@cpm.co.ma', 'EL AYACHI', '0000000000', 'Mohamed'),
+(10, 'amaher@cpm.co.ma', 'MAHER', '0000000000', 'Abdelghafour'),
+(11, 'ndahbi@cpm.co.ma', 'DAHBI', '0000000000', 'Noureddine '),
+(12, 'mcharof@cpm.co.ma', 'CHAROF', '0000000000', 'Mustapha '),
+(13, 'mraddaoui@cpm.co.ma', 'RADDAOUI', '0000000000', 'Milouda'),
+(14, 'jrguig@cpm.co.ma', 'RGUIG ', '0000000000', 'Jalal'),
+(15, 'esrhir@cpm.co.ma', 'SRHIR', '0000000000', 'El Mostafa '),
+(16, 'ehabla@cpm.co.ma', 'HABLA', '0000000000', 'El mehdi '),
+(17, 'mazridou@cpm.co.ma', 'AZRIDOU', '0000000000', 'Mohamed'),
+(18, 'enabli@cpm.co.ma', 'NABLI', '0000000000', 'El Mostafa '),
+(19, 'efarhi@cpm.co.ma', 'FARHI', '0000000000', 'El Houssaine'),
+(39, 'jeljaafari@cpm.co.ma', 'EL JAAFARI1', '0000000000', 'Jaouad  ');
 
 -- --------------------------------------------------------
 
@@ -190,18 +215,10 @@ CREATE TABLE IF NOT EXISTS `responsablemco` (
 --
 
 INSERT INTO `responsablemco` (`res_id`, `res_email`, `res_name`, `res_num_tel`, `res_prenom`) VALUES
-(13, 'driouech@gamil.com', 'Driouech', '0652847956', 'Asmaa'),
-(14, 'elmakhlouf@gamil.com', 'EL MAKHLOUF', '0648691235', 'Ilham'),
-(15, 'Lafsihi@gamil.com', 'Lafsihi', '0625696812', 'Said'),
-(16, 'laaroussi@gamil.com', 'Laaroussi', '0633212516', 'Said'),
-(26, 'driouech@gamil.com', 'Driouech', '0652847956', 'Asmaa'),
-(27, 'elmakhlouf@gamil.com', 'EL MAKHLOUF', '0648691235', 'Ilham'),
-(28, 'Lafsihi@gamil.com', 'Lafsihi', '0625696812', 'Said'),
-(29, 'laaroussi@gamil.com', 'Laaroussi', '0633212516', 'Said'),
-(42, 'driouech@gamil.com', 'Driouech', '0652847956', 'Asmaa'),
-(43, 'elmakhlouf@gamil.com', 'EL MAKHLOUF', '0648691235', 'Ilham'),
-(44, 'Lafsihi@gamil.com', 'Lafsihi', '0625696812', 'Said'),
-(45, 'laaroussi@gamil.com', 'Laaroussi', '0633212516', 'Said');
+(20, 'slaaroussi@cpm.co.ma', 'LAAROUSSI', '0000000000', 'Said'),
+(21, 'Adriouech@cpm.co.ma', 'DRIOUECH', '0000000000', 'Asmaa'),
+(24, 'slafsihi@cpm.co.ma', 'LAFSIHI', '0000000000', 'Said'),
+(27, 'ielmakhlouf@cpm.co.ma', 'EL MAKHLOUF', '0000000000', 'Ilham');
 
 -- --------------------------------------------------------
 
@@ -224,30 +241,6 @@ INSERT INTO `role` (`role`) VALUES
 ('ADMIN'),
 ('INITIATEUR'),
 ('ResposableMCO');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `sprogramme`
---
-
-DROP TABLE IF EXISTS `sprogramme`;
-CREATE TABLE IF NOT EXISTS `sprogramme` (
-  `prog_id` bigint(20) NOT NULL,
-  `descriptif` varchar(255) DEFAULT NULL,
-  `libelle` varchar(255) DEFAULT NULL,
-  `code_app` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`prog_id`),
-  KEY `FKhyeolrcabvvdl15ederxcod8f` (`code_app`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `sprogramme`
---
-
-INSERT INTO `sprogramme` (`prog_id`, `descriptif`, `libelle`, `code_app`) VALUES
-(55, 'hyfrhj', 'DRFF', 56),
-(57, 'hhjjdhb', 'LOKJGFFF', 58);
 
 -- --------------------------------------------------------
 
