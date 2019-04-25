@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template1"> 
+<head>
+<meta charset="utf-8"/>
+<title>modiffisui</title>
+  <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+  th:href="@{/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" type="text/css" href="../static/style.css"
+  th:href="@{/css/style.css}"/>
+</head>
+<body class="container spacer">
+<!-- afficher un formulaire de saisi -->
+<div layout:fragment="content">
+	<div >   <!-- //spacer ne fonctionne pas -->
+		<div class="panel panel-default">
+			<div class="panel-heading">modification fiSui</div>
+			<div class="panel-body">
+				<form th:action="@{saveFiSui}" method="post">
+				 <div class="form-group">
+					<label>ID:</label>
+					<input class="form-control" type="text" name="ref"
+					    th:value="${ficheSuivi.ref}"/>
+				</div>
+				<div class="form-group">
+				    <label>Type de la maintenance:</label>
+					<input class="form-control" type="text" name="type"
+					    th:value="${ficheSuivi.type}"/>
+				</div>
+				<div class="form-group">
+				    <label>Date de reception:</label>
+					<input class="form-control" type="text" name="dateRecept"
+					    th:value="${ficheSuivi.dateRecept}"/>
+				</div>
+				<div class="form-group">
+				    <label>Nom du ResponsableMCO:</label>
+					<input class="form-control" type="text" name="respo"
+					    th:value="${ficheSuivi.respo}"/>
+				</div>
+				<div class="form-group">
+				    <label>Date de prise en charge:</label>
+					<input class="form-control" type="text" name="dateCharge"
+					    th:value="${ficheSuivi.dateCharge}"/>
+				</div>
+				<div class="form-group">
+				    <label>Charge estimée DEV:</label>
+					<input class="form-control" type="text" name="chargeEstim"
+					    th:value="${ficheSuivi.chargeEstim}"/>
+				</div>
+				<div class="form-group">
+				    <label>Charge consommée :</label>
+					<input class="form-control" type="text" name="chargeConsom"
+					    th:value="${ficheSuivi.chargeConsom}"/>
+				</div>
+				<div class="form-group">
+				    <label>Taux d'avancement:</label>
+					<input class="form-control" type="text" name="tauxAvanc"
+					    th:value="${ficheSuivi.tauxAvanc}"/>
+				</div>
+				<div class="form-group">
+				    <label>Statut de la maintenance :</label>
+					<input class="form-control" type="text" name="statut"
+					    th:value="${ficheSuivi.statut}"/>
+				</div>
+				<div class="form-group">
+				    <label>Date mise en production :</label>
+					<input class="form-control" type="text" name="dateProd"
+					    th:value="${ficheSuivi.dateProd}"/>
+				</div>
+					<button type="submit" class="btn btn-primary">save</button>
+				</form>
+			</div>
+		</div>
+		</div>
+	
+	</div>
+	
+</body>
+</html>
