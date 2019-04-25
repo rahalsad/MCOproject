@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8" />
+<title>Fiche suivi</title>
+
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body class="container spacer">
+	
+		<div class="container" layout:fragment="content" >
+			<form th:action="@{ficheSuivi}" method="get">
+				<label>Mot Clé:</label> <input type="text" name="mc5"
+					th:value="${mc5}" />
+				<button class="btn btn-primary">Chercher</button>
+			</form>
+			
+		<div class="container">
+			<h3>Liste Fiches Suivi</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Type de la maintenance:</th>
+						<th>Date de reception</th>
+						<th>Nom du ResponsableMCO:</th>
+						<th>Date de prise en charge:</th>
+						<th>Charge estimée DEV:</th>
+						<th>Charge consommée :</th>
+						<th>Taux d'avancement :</th>
+						<th>Date mise en production :</th>
+					</tr>
+
+				</thead>
+				<tbody>
+					<tr th:each="fs:${listFicheSuivis}">
+						<td th:text="${fs.ref}"></td>
+						<td th:text="${fs.dateRecept}"></td>
+						<td th:text="${fs.respo}"></td>
+						<td th:text="${fs.dateCharge}"></td>
+						<td th:text="${fs.chargeEstim}"></td>
+						<td th:text="${fs.chargeConsom}"></td>
+						<td th:text="${fs.tauxAvanc}"></td>
+						<td th:text="${fs.dateProd}"></td>
+						<td><a th:href="@{edit(id=i.iniId)}"></a></td>
+						<td><a th:href="@{edit(iniId=${i.iniId},page=${pageCourante},size=${size},mc=${mc})}">Edit</a></td>
+					    <td><a onclick="return confirm('Etes vous sure?')"
+							th:href="@{delete(iniId=${i.iniId},page=${pageCourante},size=${size},mc=${mc})}">Delete</a></td>
+					</tr>
+
+				</tbody>
+
+			</table>
+		
+		</div>
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li th:class="${pageCourante}==${status.index}?'active':''"
+					th:each="i,status:${pages}"><a
+					th:href="@{index(page=${status.index},size=${size},mc=${mc})}"
+					th:text="${status.index}"></a>
+				</li>
+			</ul>
+		</div>
+		</div>
+	
+
+</body>
+</html>
