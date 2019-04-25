@@ -14,10 +14,10 @@ import com.example.demo.dao.InitiateurRepository;
 import com.example.demo.dao.ResponsableMCORepository;
 
 
-import com.example.demo.entities.Departement;
+/*import com.example.demo.entities.Departement;
 import com.example.demo.entities.Direction;
 import com.example.demo.entities.Initiateur;
-import com.example.demo.entities.ResponsableMCO;
+import com.example.demo.entities.ResponsableMCO;*/
 
 
 @SpringBootApplication
@@ -33,6 +33,7 @@ public class TestApplication implements CommandLineRunner {
 	@Autowired
 	private ResponsableMCORepository responsableMCORepository;
 	@Autowired
+	
 	
 	
 
