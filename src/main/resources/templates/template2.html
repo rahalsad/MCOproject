@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- <link rel="stylesheet" type="text/css"
+href="../static/css/bootstrap.min.css"
+th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css"
+href="../static/css/style.css"
+th:href="@{/css/style.css}"/> -->
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}" />
+<head>
+<meta charset="utf-8"/>
+<title>Interface Initiateur</title>
+</head>
+<body>
+	<header>
+	    
+		<div class="navbar">
+		 <div class="container-fluid" >
+			
+				<ul class="nav navbar-nav">
+					<li><a style="color:#000000" th:href="@{/fiche}">Demander une maintenance</a></li>
+					<li><a style="color:#000000" th:href="@{/ListDemandes}">Liste des Demandes</a></li>
+			
+					
+					
+					<!-- <li><a th:href="@{/login?logout}" th:inline="text">Consulter
+							la liste des initiateurs</a></li> -->
+					
+				</ul>
+			</div>
+		</div>
+	
+	</header>
+	<section layout:fragment="content">
+	</section>
+	<footer class="navbar-fixed-bottom">
+		<hr />
+		<div class="container">
+			<small>Copyright@2019</small>
+		</div>
+	</footer>
+	
+   
+</body>
+</html>

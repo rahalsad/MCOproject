@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="template1">
+	layout:decorator="template2">
 <head>
 <meta charset="utf-8" />
 <title>Liste Demandes</title>
@@ -24,16 +24,16 @@
 				<thead>
 					<tr>
 						<th>Id</th>
-<!-- 						<th>Intitulé de la maintenance</th>
-						<th>date d'envoi</th>
-						<th>statut</th> -->
-						
+						<th>Intitulé de la maintenance</th>
+						<th>date d'envoi</th>	
 					</tr>
 
 				</thead>
 				<tbody>
 					<tr th:each="f:${ListDemandes}">
+						<td th:text="${f.id}">Id</td>
 						<td th:text="${f.intituleMaintenance}">Intitulé de la maintenance</td>
+						<td th:text="${f.dateEnvoi}">Date Envoi</td>
 					</tr>
 
 				</tbody>

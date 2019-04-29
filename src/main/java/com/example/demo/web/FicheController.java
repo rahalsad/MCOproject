@@ -56,7 +56,7 @@ public class FicheController {
 			@RequestParam(name="motcle", defaultValue="")String motcle) {
 		Page<Fiche> pageDemandes=ficheRepository.chercher("%"+motcle+"%",new PageRequest(page,size));
 		
-		model.addAttribute("listDemandes", pageDemandes.getContent());
+		model.addAttribute("ListDemandes", pageDemandes.getContent());
 		int [] pages=new int[pageDemandes.getTotalPages()];
 		model.addAttribute("pages",pages);
 		model.addAttribute("size",size);
