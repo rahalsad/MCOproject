@@ -1,80 +1,170 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorator="template1"> 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template3">
 <head>
-<meta charset="utf-8"/>
+<meta charset="utf-8" />
 <title>modiffisui</title>
-  <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
-  th:href="@{/css/bootstrap.min.css}"/>
-  <link rel="stylesheet" type="text/css" href="../static/style.css"
-  th:href="@{/css/style.css}"/>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/style.css"
+	th:href="@{/css/style.css}" />
 </head>
 <body class="container spacer">
-<!-- afficher un formulaire de saisi -->
-<div layout:fragment="content">
-	<div >   <!-- //spacer ne fonctionne pas -->
-		<div class="panel panel-default">
-			<div class="panel-heading">modification fiSui</div>
-			<div class="panel-body">
-				<form th:action="@{saveFiSui}" method="post">
-				 <div class="form-group">
-					<label>ID:</label>
-					<input class="form-control" type="text" name="ref"
+	<!-- afficher un formulaire de saisi -->
+	<div layout:fragment="content">
+		<div>
+			<!-- //spacer ne fonctionne pas -->
+			<div class="panel panel-default">
+				<div class="panel-heading">modification fiSui</div>
+				<div class="panel-body">
+					<form th:action="@{/saveFicheSui}" method="post">
+<div class="form-group">
+						<label class="controle-label">Ref:</label>
+					
+					    <input class="form-control" type="text" name="ref"
 					    th:value="${ficheSuivi.ref}"/>
+					    <span class="red" th:errors="${ficheSuivi.ref}"></span>
+					</div>
+						<div class="form-group">
+							<label>Initiateur:</label> <input class="form-control"
+								type="text" name="iniName" th:value="${ficheSuivi.iniName}" />
+							<span class="red" th:errors="${ficheSuivi.iniName}"></span>
+
+						</div>
+						<div class="form-group">
+							<label>Departement:</label> <input class="form-control"
+								type="text" name="NomDepart" th:value="${ficheSuivi.NomDepart}" />
+							<span class="red" th:errors="${ficheSuivi.NomDepart}"></span>
+						</div>
+
+						<div class="form-group">
+							<label>Direction:</label> <input class="form-control"
+								type="text" name="NomDirection"
+								th:value="${ficheSuivi.NomDirection}" /> <span class="red"
+								th:errors="${ficheSuivi.NomDirection}"></span>
+						</div>
+						<div class="form-group">
+							<label>Application:</label> <input class="form-control"
+								type="text" name="NomApplication"
+								th:value="${ficheSuivi.NomApplication}" /> <span class="red"
+								th:errors="${ficheSuivi.NomApplication}"></span>
+						</div>
+						<div class="form-group">
+							<label>Intitule de la Maintenance:</label> <input
+								class="form-control" type="text" name="intituleMaintenance"
+								th:value="${ficheSuivi.intituleMaintenance}" /> <span
+								class="red" th:errors="${ficheSuivi.intituleMaintenance}"></span>
+						</div>
+						<div class="form-group" th:object="${ficheSuivi}">
+							<label>Type de la maintenance</label> <select
+								class="form-control" id="ref" name="type">
+								<option th:value="'corrective'" th:text="corrective"></option>
+								<option th:value="'Améliorative'" th:text="Améliorative"></option>
+								<option th:value="'Evolutive'" th:text="Evolutive"></option>
+							</select>
+						</div>
+
+
+						<div class="form-group">
+							<label>date reception:</label> <input class="form-control"
+								id="d1" type="text" name="dateProd"
+								th:value="${ficheSuivi.dateRecept}" /> <span class="red"
+								th:errors="${ficheSuivi.dateRecept}"></span>
+
+						</div>
+						<div class="form-group">
+							<label>Nom du ResponsableMCO:</label> <input class="form-control"
+								type="text" name="respo" th:value="${ficheSuivi.respo}" /> <span
+								class="red" th:errors="${ficheSuivi.respo}"></span>
+						</div>
+
+						<div class="form-group">
+							<label>Date de prise en charge:</label> <input
+								class="form-control" type="text" name="dateCharge"
+								th:value="${ficheSuivi.dateCharge}" />
+						</div>
+
+						<div class="form-group">
+							<label>Charge estimée DEV:</label> <input class="form-control"
+								type="text" name="chargeEstim"
+								th:value="${ficheSuivi.chargeEstim}" oninput="calculateTotal()" />
+							<span class="red" th:errors="${ficheSuivi.chargeEstim}"></span>
+						</div>
+
+
+						<div class="form-group">
+							<label>Charge consommée :</label> <input class="form-control"
+								type="text" name="chargeConsom"
+								th:value="${ficheSuivi.chargeConsom}" oninput="calculateTotal()" />
+							<span class="red" th:errors="${ficheSuivi.chargeConsom}"></span>
+						</div>
+						<div class="form-group">
+							<label>Taux d'avancement :</label> <input class="form-control"
+								type="text" name="tauxAvanc" th:value="${ficheSuivi.tauxAvanc}" />
+							<span class="red" th:errors="${ficheSuivi.tauxAvanc}"></span>
+						</div>
+
+						<div class="form-group" th:object="${ficheSuivi}">
+							<label>Statut de la maintenance: </label> -->
+							
+							<select class="form-control" id="ref" name="statut">
+								<option th:value="'Annalyse'" th:text="Annalyse"></option>
+								<option th:value="'Developpement'" th:text="Developpement"></option>
+								<option th:value="'Intégration'" th:text="Intégration"></option>
+								<option th:value="'Homologation'" th:text="Homologation"></option>
+								<option th:value="'Rejet'" th:text="Rejet"></option>
+								<option th:value="'Production'" th:text="Production"></option>
+								<option th:value="'Cloture'" th:text="Cloture"></option>
+								<option th:value="'Attente'" th:text="Attente"></option>
+								<option th:value="'Suspendu'" th:text="Suspendu"></option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Date mise en production :</label> <input
+								class="form-control" type="text" name="dateProd"
+								th:value="${ficheSuivi.dateProd}" />
+
+						</div>
+
+						<button type="submit" class="btn btn-primary">save</button>
+					</form>
 				</div>
-				<div class="form-group">
-				    <label>Type de la maintenance:</label>
-					<input class="form-control" type="text" name="type"
-					    th:value="${ficheSuivi.type}"/>
-				</div>
-				<div class="form-group">
-				    <label>Date de reception:</label>
-					<input class="form-control" type="text" name="dateRecept"
-					    th:value="${ficheSuivi.dateRecept}"/>
-				</div>
-				<div class="form-group">
-				    <label>Nom du ResponsableMCO:</label>
-					<input class="form-control" type="text" name="respo"
-					    th:value="${ficheSuivi.respo}"/>
-				</div>
-				<div class="form-group">
-				    <label>Date de prise en charge:</label>
-					<input class="form-control" type="text" name="dateCharge"
-					    th:value="${ficheSuivi.dateCharge}"/>
-				</div>
-				<div class="form-group">
-				    <label>Charge estimée DEV:</label>
-					<input class="form-control" type="text" name="chargeEstim"
-					    th:value="${ficheSuivi.chargeEstim}"/>
-				</div>
-				<div class="form-group">
-				    <label>Charge consommée :</label>
-					<input class="form-control" type="text" name="chargeConsom"
-					    th:value="${ficheSuivi.chargeConsom}"/>
-				</div>
-				<div class="form-group">
-				    <label>Taux d'avancement:</label>
-					<input class="form-control" type="text" name="tauxAvanc"
-					    th:value="${ficheSuivi.tauxAvanc}"/>
-				</div>
-				<div class="form-group">
-				    <label>Statut de la maintenance :</label>
-					<input class="form-control" type="text" name="statut"
-					    th:value="${ficheSuivi.statut}"/>
-				</div>
-				<div class="form-group">
-				    <label>Date mise en production :</label>
-					<input class="form-control" type="text" name="dateProd"
-					    th:value="${ficheSuivi.dateProd}"/>
-				</div>
-					<button type="submit" class="btn btn-primary">save</button>
-				</form>
+
+				<script type="text/javascript">
+var d1 = new Date();
+var y1= d1.getFullYear();
+var m1 = d1.getMonth()+1;
+if(m1<10)
+    m1="0"+m1;
+var dt1 = d1.getDate();
+if(dt1<10)
+dt1 = "0"+dt1;
+var d2 = dt1+"-"+m1+"-"+y1;
+document.getElementById('d1').value=d2;
+</script>
+				<script type="text/javascript"> 
+    function calculateTotal() { 
+     var chargeConsom = ficheSuivi.getElementById("chargeConsom").value; 
+     var chargeEstim = ficheSuivi.getElementById("chargeEstim").value; 
+     
+     var tauxAvanc = ficheSuivi.getElementById("tauxAvanc"); 
+
+     //do all the calculations here 
+     var total = chargeConsom / chargeEstim 
+     
+     tauxAvanc.innerHTML = tauxAvanc 
+    } 
+    calculateTotal(); // don't forget to call this function on the first run 
+</script>
+
 			</div>
 		</div>
-		</div>
-	
+
+
+
 	</div>
-	
+
 </body>
 </html>

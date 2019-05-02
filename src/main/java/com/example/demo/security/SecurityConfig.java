@@ -66,6 +66,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 					.formLogin()
 						.loginPage("/login")   
 							.permitAll()
+							
+							
+		/*
+		 * http.authorizeRequests().antMatchers("/fiche").access("hasRole('INITIATEUR')"
+		 * ); http.authorizeRequests().antMatchers("/index").access("hasRole('ADMIN')");
+		 * 
+		 * http.authorizeRequests()
+		 * .antMatchers("/css/**","/js/**","/image/**").permitAll() .anyRequest()
+		 * .authenticated() .and() .formLogin() .loginPage("/login") .permitAll()
+		 */
 			//http.exceptionHandling().accessDeniedPage("/403");		
 								
 						;}

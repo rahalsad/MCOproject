@@ -12,7 +12,7 @@
 <body class="container spacer">
 	
 		<div class="container" layout:fragment="content" >
-			<form th:action="@{ListDemandes}" method="get">
+			<form th:action="@{listDemande}" method="get">
 				<label>Mot Clé:</label> <input type="text" name="motcle"
 					th:value="${motcle}" />
 				<button class="btn btn-primary">Chercher</button>
@@ -25,15 +25,18 @@
 					<tr>
 						<th>Id</th>
 						<th>Intitulé de la maintenance</th>
+						<th>Nom de l'application</th>
 						<th>date d'envoi</th>	
 					</tr>
 
 				</thead>
 				<tbody>
-					<tr th:each="f:${ListDemandes}">
-						<td th:text="${f.id}">Id</td>
-						<td th:text="${f.intituleMaintenance}">Intitulé de la maintenance</td>
-						<td th:text="${f.dateEnvoi}">Date Envoi</td>
+					<tr th:each="fs:${listFicheSuivis}" >
+						<td th:text="${fs.ref}">le referentiel</td>
+						<td th:text="${fs.intituleMaintenance}">Intitulé de la maintenance</td>
+						<td th:text="${fs.NomApplication}">Application</td>
+						<td th:text="${fs.dateEnvoi}">Date Envoi</td>
+						<td><a th:href="@{editfiSui(ref=${fs.ref},page=${pageCourante},size=${size},mc5=${mc5})}">Afficher</a></td>
 					</tr>
 
 				</tbody>
@@ -44,8 +47,8 @@
 		<div class="container">
 			<ul class="nav nav-pills">
 				<li th:class="${pageCourante}==${status.index}?'active':''"
-					th:each="f,status:${pages}"><a
-					th:href="@{ListDemandes(page=${status.index},size=${size},motcle=${motcle})}"
+					th:each="fs,status:${pages}"><a
+					th:href="@{listFicheSuivis(page=${status.index},size=${size},mc5=${mc5})}"
 					th:text="${status.index}"></a>
 				</li>
 			</ul>

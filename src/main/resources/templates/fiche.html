@@ -21,40 +21,35 @@ layout:decorator="template2">
 			<div class="panel-body">
 				<form th:action="@{saveFiche} " method="post">
 					<div class="form-group">
-						<label>Nom:</label>
+						<label>Initiateur:</label>
 					
 					    <input class="form-control" type="text" name="iniName"
-					    th:value="${fiche.iniName}"/>
-					    <span class="red" th:errors="${fiche.iniName}"></span>
+					    th:value="${ficheSuivi.iniName}"/>
+					    <span class="red" th:errors="${ficheSuivi.iniName}"></span>
 					</div>
-					<div class="form-group">
-						<label>Prenom:</label>
 					
-					    <input class="form-control" type="text" name="iniPrenom"
-					    th:value="${fiche.iniPrenom}"/>
-					     <span class="red" th:errors="${fiche.iniPrenom}"></span>
+					
+					<div class="form-group">
+						<label>Département:</label>
+					
+					    <input class="form-control" type="text" name="NomDepart"
+					    th:value="${ficheSuivi.NomDepart}"/>
+					     <span class="red" th:errors="${ficheSuivi.NomDepart}"></span>
 					</div>
 					<div class="form-group">
 						<label>Direction:</label>
 					
 					    <input class="form-control" type="text" name="NomDirection"
-					    th:value="${fiche.NomDirection}"/>
-					     <span class="red" th:errors="${fiche.NomDirection}"></span>
-					</div>
-					<div class="form-group">
-						<label>Département:</label>
-					
-					    <input class="form-control" type="text" name="NomDepart"
-					    th:value="${fiche.NomDepart}"/>
-					     <span class="red" th:errors="${fiche.NomDepart}"></span>
+					    th:value="${ficheSuivi.NomDirection}"/>
+					     <span class="red" th:errors="${ficheSuivi.NomDirection}"></span>
 					</div>
 					
 					<div class="form-group">
 						<label>Application:</label>
 					
 					    <input class="form-control" type="text" name="NomApplication"
-					    th:value="${fiche.NomApplication}"/>
-					     <span class="red" th:errors="${fiche.NomApplication}"></span>
+					    th:value="${ficheSuivi.NomApplication}"/>
+					     <span class="red" th:errors="${ficheSuivi.NomApplication}"></span>
 					</div>
 					
 					
@@ -62,8 +57,8 @@ layout:decorator="template2">
 						<label>Intitulé de la maintenance:</label>
 					
 					    <input class="form-control" type="text" name="intituleMaintenance"
-					    th:value="${fiche.intituleMaintenance}"/>
-					     <span class="red" th:errors="${fiche.intituleMaintenance}"></span>
+					    th:value="${ficheSuivi.intituleMaintenance}"/>
+					     <span class="red" th:errors="${ficheSuivi.intituleMaintenance}"></span>
 					</div>
 					
 					<!-- <div class="form-group">

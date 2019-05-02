@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorator="template1"> 
+layout:decorator="template3"> 
 <head>
 <meta charset="utf-8"/>
 <title>FicheSuivi</title>
@@ -22,6 +22,26 @@ th:href="@{/css/style.css}"/>
 				<div class="form-group">
 					<label>ID:</label>
 					<label th:text="${ficheSuivi.ref}"></label>
+				</div>
+				<div class="form-group">
+					<label>Initiateur:</label>
+					<label th:text="${ficheSuivi.iniName}"></label>
+				</div>
+				<div class="form-group">
+					<label>Departement:</label>
+					<label th:text="${ficheSuivi.NomDepart}"></label>
+				</div>
+				<div class="form-group">
+					<label>Direction:</label>
+					<label th:text="${ficheSuivi.NomDirection}"></label>
+				</div>
+				<div class="form-group">
+					<label>Application:</label>
+					<label th:text="${ficheSuivi.NomApplication}"></label>
+				</div>
+				<div class="form-group">
+					<label>Intitule de la Maintenance:</label>
+					<label th:text="${ficheSuivi.intituleMaintenance}"></label>
 				</div>
 				<div class="form-group">
 				    <label>Type de la maintenance:</label>
