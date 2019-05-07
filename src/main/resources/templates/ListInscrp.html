@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8" />
+<title>Inscriptions</title>
+<!-- <link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css"
+href="../static/css/style.css"
+th:href="@{/css/style.css}"/> -->
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body class="container spacer">
+	
+		<div class="container" layout:fragment="content" >
+			<form th:action="@{inscription}" method="get"></form>
+				
+			
+			
+		<div class="container">
+			<h3>Liste Des demandes d'insciprions</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>username</th>
+						<th>matricule</th>
+						<th>email</th>
+					
+						<th>télèphone</th>
+					    <th>Nom de la direction</th>
+					    <th>Nom département</th>
+					</tr>
+
+				</thead>
+				<tbody>
+					<tr th:each="u:${listInscription}">
+						<td th:text="${u.username}"></td>
+						<td th:text="${u.matricule}"></td>
+						<td th:text="${u.iniEmail}"></td>
+						<td th:text="${u.iniNumTel}"></td>
+						<td th:text="${u.directName}"></td>
+						<td th:text="${u.depName}"></td>
+						<td><a th:href="@{validateUser(userId=u.userId)}"></a></td>
+						<td><a th:href="@{validateUser(userId=${u.userId},page=${pageCourante},size=${size},mc=${mc})}">valider</a></td>
+					    <td><a onclick="return confirm('Etes vous sure?')"
+							th:href="@{refus(userId=${u.userId},page=${pageCourante},size=${size},mc1=${mc1})}">refuser</a></td>
+					</tr>
+
+				</tbody>
+
+			</table>
+		</div>
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li th:class="${pageCourante}==${status.index}?'active':''"
+					th:each="page,status:${pages}"><a
+					th:href="@{inscription(page=${status.index},size=${size},mc1=${mc1})}"
+					th:text="${status.index}"></a>
+				</li>
+			</ul>
+		</div>
+		</div>
+	
+
+</body>
+</html>

@@ -43,8 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			
 			 auth.jdbcAuthentication()                
 		    .dataSource(datasource)
-		    .usersByUsernameQuery("select username as principal, password as credentials, true from user where username = ?")               
-		    .authoritiesByUsernameQuery("select username as principal, role as role from user_role where username = ?")                
+		    .usersByUsernameQuery("select username as principal, password as credentials, true from users where username = ? and active=1 " )               
+		    .authoritiesByUsernameQuery("select username as principal, role as role from users where username = ? and active=1" )                
 		    .rolePrefix("ROLE_").passwordEncoder(NoOpPasswordEncoder.getInstance());
 			 
 			
@@ -56,7 +56,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.csrf().disable()
-			.authorizeRequests()//.antMatchers("/fiche").hasRole("INITIATEUR")
+			.authorizeRequests()
+			.antMatchers("/login").permitAll()
+			.antMatchers("/registration").permitAll()
+			.antMatchers("/saveUser").permitAll()//.antMatchers("/index").hasRole("INITIATEUR")
 			//.antMatchers("/initiateur").hasRole("INITIATEUR")
 			//.authorizeRequests().antmatchers("/delete","/edit").hasRole("ADMIN");
 			.antMatchers("/css/**","/js/**","/image/**").permitAll()

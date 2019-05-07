@@ -1,17 +1,22 @@
  package com.example.demo.web;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import com.example.demo.dao.UserRepository;
+import com.example.demo.entities.Fiche;
 import com.example.demo.entities.Initiateur;
 import com.example.demo.entities.Users;
 /*import com.example.demo.validator.UserValidator;*/
+import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,6 +37,8 @@ import org.springframework.web.context.request.WebRequest;
 
 @Controller
 	public class UserService  {
+	@Autowired
+	private UserRepository userRepository;
 
 	 
 /*	@Autowired
@@ -80,12 +87,34 @@ import org.springframework.web.context.request.WebRequest;
 	return "redirect:/fiche";
 	}*/
 	
-	@RequestMapping(value = "/registration", method = RequestMethod.GET)
-	public String showRegistrationForm(WebRequest request, Model model) {
-	    Users user = new Users();
-	    model.addAttribute("user", user);
-	    return "registration";
+	
+	@RequestMapping(value="/registration",method=RequestMethod.GET)
+	public String registration(Model model) {
+		model.addAttribute("users",new Users());
+		return "registration"; //LE NOM DE LA VUE.HTML
+	
 	}
+	
+	
+	@RequestMapping(value="/saveUser",method=RequestMethod.POST)
+	public String saveUser(Model model ,@Valid Users users,
+			BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return "registration";
+		userRepository.save(users);
+		return "ConfirmUser"; //LE NOM DE LA VUE.HTML
+	
+	}
+	
+	/*@RequestMapping(value = "/registration", method = RequestMethod.GET)
+	public ModelAndView register() {
+		ModelAndView modelAndView = new ModelAndView();
+		// User user = new User();
+		// modelAndView.addObject("user", user); 
+		modelAndView.setViewName("registration"); // resources/template/register.html
+		return modelAndView;
+	}*/
+	
 	
 	
 	

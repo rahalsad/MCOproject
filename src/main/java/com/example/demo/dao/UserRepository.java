@@ -9,13 +9,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.config.authentication.UserServiceBeanDefinitionParser;
 
-import com.example.demo.entities.Initiateur;
+
 import com.example.demo.entities.Users;
 
 public interface UserRepository extends JpaRepository<Users, Long> {
 	
-	@Query("select i from Initiateur i where i.iniName like:x")
-	public Page<Initiateur> chercher(@Param("x")String mc, Pageable pageable );
+	@Query("select u from Users u where str(u.userId) like:x")
+	public Page<Users> chercher(@Param("x")String mc, Pageable pageable );
 
 }
 
