@@ -1,94 +1,89 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-layout:decorator="template2"> 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template2">
 
 <head>
-<meta charset="utf-8"/>
-<title>Demande de Maintenance </title>
-	<link rel="stylesheet" type="text/css" 
-	/>
+<meta charset="utf-8" />
+<title>Demande de Maintenance</title>
+<link rel="stylesheet" type="text/css" />
 </head>
 
 
 <body>
-<!-- afficher un formulaire de saisi -->
-<div layout:fragment="content">
-	<div class=" spacer col-md-6 col-xs-12" >   
-		<div class="panel panel-default">
-			<div class="panel-heading">Demande de Maintenance</div>
-			<div class="panel-body">
-				<form th:action="@{saveFiche} " method="post">
-					<div class="form-group">
-						<label>Initiateur:</label>
-					
-					    <input class="form-control" type="text" name="iniName"
-					    th:value="${ficheSuivi.iniName}"/>
-					    <span class="red" th:errors="${ficheSuivi.iniName}"></span>
-					</div>
-					
-					
-					<div class="form-group">
-						<label>Département:</label>
-					
-					    <input class="form-control" type="text" name="NomDepart"
-					    th:value="${ficheSuivi.NomDepart}"/>
-					     <span class="red" th:errors="${ficheSuivi.NomDepart}"></span>
-					</div>
-					<div class="form-group">
-						<label>Direction:</label>
-					
-					    <input class="form-control" type="text" name="NomDirection"
-					    th:value="${ficheSuivi.NomDirection}"/>
-					     <span class="red" th:errors="${ficheSuivi.NomDirection}"></span>
-					</div>
-					
-					<div class="form-group">
-						<label>Application:</label>
-					
-					    <input class="form-control" type="text" name="NomApplication"
-					    th:value="${ficheSuivi.NomApplication}"/>
-					     <span class="red" th:errors="${ficheSuivi.NomApplication}"></span>
-					</div>
-					
-					
-					<div class="form-group">
-						<label>Intitulé de la maintenance:</label>
-					
-					    <input class="form-control" type="text" name="intituleMaintenance"
-					    th:value="${ficheSuivi.intituleMaintenance}"/>
-					     <span class="red" th:errors="${ficheSuivi.intituleMaintenance}"></span>
-					</div>
-					
-					<!-- <div class="form-group">
-						<label>Date Envoi:</label>
-					
-					   <input class="form-control" type="text"  id='d1' name='d1'
-					    th:value="${fiche.dateEnvoi}"/>
-					    <span class="red" th:errors="${fiche.dateEnvoi}"></span>
-					</div>  -->
+	<!-- afficher un formulaire de saisi -->
+	<div layout:fragment="content">
+		<div class=" spacer col-md-6 col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">Demande de Maintenance</div>
+				<div class="panel-body">
+					<form th:action="@{saveFiche} " method="post">
+						<div class="form-group">
+							<label>Initiateur:</label> <input class="form-control"
+								type="text" name="iniName" th:value="${ficheSuivi.iniName}" /> <span
+								class="red" th:errors="${ficheSuivi.iniName}"></span>
+						</div>
+
+
+						<div class="form-group" >
+							<label>Département:</label> 
+							<form method="post" >
+            <div class="div_box">
+                <select id="depId" name="depName" >
+                    <option value="top">Select your departement</option>
+                    <option th:each="dep : ${departement}" value="${dep.depName}" th:text="${dep.depName}" >
+                   </option>
+
+                </select>
+                    <br>
+            
+            </div>
+    </form>				</div>
+						<div class="form-group">
+							<label>Direction:</label> <input class="form-control" type="text"
+								name="NomDirection" readonly="true"  /> <span
+								class="red" th:errors="${ficheSuivi.NomDirection}"></span>
+						</div>
+
+						<div class="form-group">
+							<label>Application:</label> <input class="form-control"
+								type="text" name="NomApplication"
+								th:value="${ficheSuivi.NomApplication}" /> <span class="red"
+								th:errors="${ficheSuivi.NomApplication}"></span>
+						</div>
+
+
+						<div class="form-group">
+							<label>Intitulé de la maintenance:</label> <input
+								class="form-control" type="text" name="intituleMaintenance"
+								th:value="${ficheSuivi.intituleMaintenance}" /> <span
+								class="red" th:errors="${ficheSuivi.intituleMaintenance}"></span>
+						</div>
+
+
+
 						<button type="submit" class="btn btn-primary">envoyer</button>
-				</form>
+
+						<div></div>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-	
-<script type="text/javascript">     
-d = new Date();  
-document.write("<p>Date : <span style='color:#8aa;'>"); 
-document.write(d.toLocaleDateString());  
-document.write("</span></p>"); </script>
-				
 
-<!-- <script type="text/javascript">     
+
+    <script src="https://ajax.googleapis.com/ajax/libs/  
+                  jquery/3.3.1/jquery.min.js"></script> 
+
+
+		<script type="text/javascript">     
 d = new Date();   
 document.write("<p>Date : <span style='color:#8aa;'>");   
 document.write(d.toLocaleDateString());  
 document.write("</span></p>"); 
-</script> -->
- 
-<!-- <script type="text/javascript">
+</script>
+
+		<script type="text/javascript">
 var d1 = new Date();
 var y1= d1.getFullYear();
 var m1 = d1.getMonth()+1;
@@ -98,7 +93,22 @@ var dt1 = d1.getDate();
 if(dt1<10)
 dt1 = "0"+dt1;
 var d2 = y1+"-"+m1+"-"+dt1;
-document.getElementById('d1').value=d2;
-</script>   -->
-</div>
+</script>
+<!-- document.getElementById('d1').value=d2;
+$(document).ready(function() { 
+   alert(); 
+}); 
+
+$("button").click(function(){
+	alert();
+	  $.get("/directionByDd?depId="+depId, function(data, status){
+	    alert("Data: " + data + "\nStatus: " + status);
+	  });
+	});
+
+</script>
+ -->
+
+
+	</div>
 </body>

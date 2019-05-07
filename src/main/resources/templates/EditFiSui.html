@@ -33,7 +33,7 @@
 							<span class="red" th:errors="${ficheSuivi.iniName}"></span>
 
 						</div>
-						<div class="form-group">
+						<div class="form-group" >
 							<label>Departement:</label> <input class="form-control"
 								type="text" name="NomDepart" th:value="${ficheSuivi.NomDepart}" />
 							<span class="red" th:errors="${ficheSuivi.NomDepart}"></span>
@@ -69,9 +69,9 @@
 
 						<div class="form-group">
 							<label>date reception:</label> <input class="form-control"
-								id="d1" type="text" name="dateProd"
-								th:value="${ficheSuivi.dateRecept}" /> <span class="red"
-								th:errors="${ficheSuivi.dateRecept}"></span>
+								type="text" name="dateEnvoi"
+								th:value="${ficheSuivi.dateEnvoi}" /> <span class="red"
+								th:errors="${ficheSuivi.dateEnvoi}"></span>
 
 						</div>
 						<div class="form-group">
@@ -88,21 +88,21 @@
 
 						<div class="form-group">
 							<label>Charge estimée DEV:</label> <input class="form-control"
-								type="text" name="chargeEstim"
-								th:value="${ficheSuivi.chargeEstim}" oninput="calculateTotal()" />
+								type="number" name="chargeEstim"
+								th:value="${ficheSuivi.chargeEstim}" id="chargeEstim" onblur="calcul()" />
 							<span class="red" th:errors="${ficheSuivi.chargeEstim}"></span>
 						</div>
 
 
 						<div class="form-group">
 							<label>Charge consommée :</label> <input class="form-control"
-								type="text" name="chargeConsom"
-								th:value="${ficheSuivi.chargeConsom}" oninput="calculateTotal()" />
+								type="number" name="chargeConsom"
+								th:value="${ficheSuivi.chargeConsom}" id="chargeConsom"  onblur="calcul()" />
 							<span class="red" th:errors="${ficheSuivi.chargeConsom}"></span>
 						</div>
 						<div class="form-group">
 							<label>Taux d'avancement :</label> <input class="form-control"
-								type="text" name="tauxAvanc" th:value="${ficheSuivi.tauxAvanc}" />
+								type="text" readonly="true" name="tauxAvanc" th:value="${ficheSuivi.tauxAvanc}"  id="tauxAvanc" />
 							<span class="red" th:errors="${ficheSuivi.tauxAvanc}"></span>
 						</div>
 
@@ -114,11 +114,11 @@
 								<option th:value="'Developpement'" th:text="Developpement"></option>
 								<option th:value="'Intégration'" th:text="Intégration"></option>
 								<option th:value="'Homologation'" th:text="Homologation"></option>
-								<option th:value="'Rejet'" th:text="Rejet"></option>
 								<option th:value="'Production'" th:text="Production"></option>
 								<option th:value="'Cloture'" th:text="Cloture"></option>
 								<option th:value="'Attente'" th:text="Attente"></option>
 								<option th:value="'Suspendu'" th:text="Suspendu"></option>
+								<option th:value="'Rejet'" th:text="Rejet"></option>
 							</select>
 						</div>
 						<div class="form-group">
@@ -127,6 +127,18 @@
 								th:value="${ficheSuivi.dateProd}" />
 
 						</div>
+						<div class="form-group">
+							<label>Date de la dernière modification :</label> <input
+								class="form-control"  id="d1" type="text" name="dateModif"
+								th:value="${ficheSuivi.dateModif}" />
+
+						</div>
+						<!-- <div class="form-group">
+							<label>Motif et Remarques:</label> <input
+								class="form-control"   type="text" name="remarque"
+								th:value="${ficheSuivi.remarque}" />
+
+						</div> -->
 
 						<button type="submit" class="btn btn-primary">save</button>
 					</form>
@@ -144,20 +156,19 @@ dt1 = "0"+dt1;
 var d2 = dt1+"-"+m1+"-"+y1;
 document.getElementById('d1').value=d2;
 </script>
-				<script type="text/javascript"> 
-    function calculateTotal() { 
-     var chargeConsom = ficheSuivi.getElementById("chargeConsom").value; 
-     var chargeEstim = ficheSuivi.getElementById("chargeEstim").value; 
-     
-     var tauxAvanc = ficheSuivi.getElementById("tauxAvanc"); 
+<script type="text/javascript">
+function calcul(){
+				var tauxAvanc =0;
+                var c1 =document.getElementById("chargeEstim").value;
+ 
+                var c2 =document.getElementById("chargeConsom").value;
+ 
+                tauxAvanc = (c2/c1)*100;
+                document.getElementById("tauxAvanc").value =tauxAvanc+"%" ;
+            }
+ 
+</script>  
 
-     //do all the calculations here 
-     var total = chargeConsom / chargeEstim 
-     
-     tauxAvanc.innerHTML = tauxAvanc 
-    } 
-    calculateTotal(); // don't forget to call this function on the first run 
-</script>
 
 			</div>
 		</div>

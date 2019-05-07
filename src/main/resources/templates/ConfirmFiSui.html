@@ -49,7 +49,7 @@ th:href="@{/css/style.css}"/>
 				</div>
 				<div class="form-group">
 				    <label>Date de reception:</label>
-					<label th:text="${ficheSuivi.dateRecept}"></label>
+					<label th:text="${ficheSuivi.dateEnvoi}"></label>
 				</div>
 				<div class="form-group">
 				    <label>Nom du ResponsableMCO:</label>
@@ -78,6 +78,10 @@ th:href="@{/css/style.css}"/>
 				<div class="form-group">
 				    <label>Date mise en production :</label>
 					<label th:text="${ficheSuivi.dateProd}"></label>
+				</div>
+				<div class="form-group">
+				    <label>Date de modification :</label>
+					<label th:text="${ficheSuivi.dateModif}"></label>
 				</div>
 			</div>	
 			</div>
