@@ -34,7 +34,7 @@ th:href="@{/css/style.css}"/> -->
 						<th>Id</th>
 						<th>Nom du departement</th>
 						<th>Nom du directeur</th>
-					    <th>Nom de la direction</th>
+					    
 					</tr>
 
 				</thead>
@@ -43,7 +43,6 @@ th:href="@{/css/style.css}"/> -->
 						<td th:text="${p.depId}"></td>
 						<td th:text="${p.depName}"></td>
 						<td th:text="${p.directDep}"></td>
-						<td th:text="${p.directionName}"></td>
 						<td><a th:href="@{editdep(id=p.depId)}"></a></td>
 						<td><a th:href="@{editdep(depId=${p.depId},page=${pageCourante},size=${size},mc2=${mc2})}">Edit</a></td>
 					    <td><a onclick="return confirm('Etes vous sure?')"

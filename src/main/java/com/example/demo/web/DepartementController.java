@@ -13,14 +13,22 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.example.demo.dao.DepartementRepository;
+import com.example.demo.dao.DirectionRepository;
 import com.example.demo.entities.Departement;
+import com.example.demo.entities.Direction;
 
 
 @Controller
 public class DepartementController {
 	@Autowired 
 	private DepartementRepository departementRepository; 
+	
+	@Autowired 
+	private DirectionRepository directionR;
+	
 	@RequestMapping(value="/dep")
 	public String dep(Model model,
 			@RequestParam(name="page", defaultValue="0")int page,
@@ -48,6 +56,8 @@ public class DepartementController {
 	@RequestMapping(value="/formdep",method=RequestMethod.GET)
 	public String formDepartement(Model model ) {
 		model.addAttribute("departement",new Departement());
+		model.addAttribute("directions",directionR.findAll());
+		
 		return "FormDepartement"; //LE NOM DE LA VUE.HTML
 	
 	}
@@ -60,13 +70,29 @@ public class DepartementController {
 	}
 	
 	@RequestMapping(value="/savedep",method=RequestMethod.POST)
-	public String savedep(Model model ,@Valid Departement departement,
-			BindingResult bindingResult) {
+	public String savedep(Model model ,@Valid Departement departement,@RequestParam("directId") long id_dir, BindingResult bindingResult) { 
 		if (bindingResult.hasErrors())
 			return "FormDepartement";
+		Direction d=directionR.findById(id_dir).orElse(null);
+		departement.setDirection(d);
 		departementRepository.save(departement);
 		return "ConfirmationDep"; //LE NOM DE LA VUE.HTML
 	
 	}
+	
+	
+	@RequestMapping(value="/directionByDd",method=RequestMethod.POST)
+	@ResponseBody
+	public String getDirection(@RequestParam("depId") long id_dep) { 
+		
+	
+		Departement d=departementRepository.findById(id_dep).orElse(null);
+		
+		return d.getDirection().getDirectName();
+	
+	}
+	
+	
+	
 }
 

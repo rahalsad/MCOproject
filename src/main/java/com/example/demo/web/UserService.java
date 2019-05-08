@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import com.example.demo.dao.UserRepository;
-import com.example.demo.entities.Fiche;
+
 import com.example.demo.entities.Initiateur;
 import com.example.demo.entities.Users;
 /*import com.example.demo.validator.UserValidator;*/

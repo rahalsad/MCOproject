@@ -14,8 +14,10 @@ public class Direction implements Serializable {
 	private Long directId;
 	private String directName;
 	private String directorName;
+//	@OneToMany(mappedBy="direction" ,fetch=FetchType.LAZY)
+//	private Collection<Departement> departements;
 	@OneToMany(mappedBy="direction" ,fetch=FetchType.LAZY)
-	private Collection<Departement> departements;
+	private Collection<FicheSuivi> ficheSuivis;
 	public Direction(String directName, String directorName) {
 		super();
 		this.directName = directName;
@@ -43,10 +45,20 @@ public class Direction implements Serializable {
 	public void setDirectorName(String directorName) {
 		this.directorName = directorName;
 	}
+	/*
 	public Collection<Departement> getDepartements() {
 		return departements;
 	}
 	public void setDepartements(Collection<Departement> departements) {
 		this.departements = departements;
 	}
+	*/
+	@Override
+	public String toString() {
+		return "Direction [directId=" + directId + ", directName=" + directName + ", directorName=" + directorName
+				+ ", ficheSuivis=" + ficheSuivis + "]";
+	}
+
+	
+
 }
