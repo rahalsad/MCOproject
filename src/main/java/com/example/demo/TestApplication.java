@@ -12,6 +12,10 @@ import com.example.demo.dao.DepartementRepository;
 import com.example.demo.dao.DirectionRepository;
 import com.example.demo.dao.InitiateurRepository;
 import com.example.demo.dao.ResponsableMCORepository;
+import com.example.demo.dao.RoleRepository;
+import com.example.demo.dao.UserRepository;
+import com.example.demo.entities.Users;
+import com.example.demo.entities.role;
 
 
 /*import com.example.demo.entities.Departement;
@@ -33,8 +37,11 @@ public class TestApplication implements CommandLineRunner {
 	@Autowired
 	private ResponsableMCORepository responsableMCORepository;
 	@Autowired
+	private UserRepository userRepository;
 	
 	
+	@Autowired
+	private RoleRepository  roleRepository;
 	
 
 	
@@ -44,6 +51,18 @@ public class TestApplication implements CommandLineRunner {
 	@Override
 	public void run(String...arg0) throws Exception{
 		
+		/*userRepository.deleteAll();
+		roleRepository.deleteAll();
+		
+		role r= new role("INITIATEUR");
+	roleRepository.save(r);
+	//	roleRepository.flush();
+		Users users= new Users();
+		users.setPassword("123456");
+		users.setUsername("Initiateur");
+		users.setActive(true);
+		userRepository.save(users);
+		*/
 		
 		
 		
@@ -100,7 +119,7 @@ public class TestApplication implements CommandLineRunner {
 		 
 		 
 		 
-		
+		 
 		 
 		 
 	
