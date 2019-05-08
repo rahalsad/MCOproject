@@ -39,23 +39,22 @@ public class FicheSuiviController {
 
 	// controlleur cote Responsable mco
 	@RequestMapping(value = "/ficheList")
-	public String ficheList(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "7") int size,
-			@RequestParam(name = "mc5", defaultValue = "") String mc5) {
-		Page<FicheSuivi> pageficheSuivis = ficheSuiviRepository.chercher("%" + mc5 + "%", new PageRequest(page, size));
-
-		// Page<FicheSuivi> pageficheSuiviss=ficheSuiviRepository.separer2(new
-		// PageRequest(page,size));
-		// model.addAttribute("listFicheSuiviss", pageficheSuiviss.getContent());
+	public String ficheList(Model model,
+			@RequestParam(name="page", defaultValue="0")int pagef,
+			@RequestParam(name="size", defaultValue="3")int sizef,
+			@RequestParam(name="mcf", defaultValue="")String mcf) {
+		Page<FicheSuivi> pageficheSuivis=ficheSuiviRepository.chercher("%"+mcf+"%",new PageRequest(pagef,sizef));
+		
 		model.addAttribute("listFicheSuivis", pageficheSuivis.getContent());
-		int[] pages = new int[pageficheSuivis.getTotalPages()];
-		model.addAttribute("pages", pages);
-		model.addAttribute("size", size);
-		model.addAttribute("pageCourante", page);
-		model.addAttribute("mc5", mc5);
+		int [] pages=new int[pageficheSuivis.getTotalPages()];
+		model.addAttribute("pages",pages);
+		model.addAttribute("size",sizef);
+		model.addAttribute("pageCourante",pagef);
+		model.addAttribute("mcf",mcf);
 
-		// ficheSuiviRepository.findById(ref)
-
+		
+		//Page<FicheSuivi> pageficheSuiviss=ficheSuiviRepository.separer2(new PageRequest(page,size));
+		//model.addAttribute("listFicheSuivis", pageficheSuiviss.getContent());
 		return "historiqueFiche";
 
 	}
@@ -64,21 +63,19 @@ public class FicheSuiviController {
 	@RequestMapping(value = "/listDemande")
 	public String listDemande(Model model,
 
-			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "page", defaultValue = "0") int pagef,
 
-			@RequestParam(name = "size", defaultValue = "3") int size,
+			@RequestParam(name = "size", defaultValue = "3") int sizef
 
-			@RequestParam(name = "mc5", defaultValue = "") String mc5) {
-		Page<FicheSuivi> pageficheSuivis = ficheSuiviRepository.chercher("%" + mc5 + "%", new PageRequest(page, size));
-		// Page<FicheSuivi> pageficheSuivis = ficheSuiviRepository.separer( new
-		// PageRequest(page, size));
+			) {
+		
+		Page<FicheSuivi> pageficheSuivis = ficheSuiviRepository.separer( new PageRequest(pagef, sizef));
 		model.addAttribute("listFicheSuivis", pageficheSuivis.getContent());
+		
 		int[] pages = new int[pageficheSuivis.getTotalPages()];
 		model.addAttribute("pages", pages);
-		model.addAttribute("size", size);
-		model.addAttribute("pageCourante", page);
-		model.addAttribute("mc5", mc5);
-
+		model.addAttribute("size", sizef);
+		model.addAttribute("pageCourante", pagef);
 		return "ListDemandes";
 
 	}
@@ -87,20 +84,13 @@ public class FicheSuiviController {
 
 	@RequestMapping(value = "/deleteFiSui", method = RequestMethod.GET)
 
-	public String deleteFiSui(Long ref, String mc5, int page, int size) {
+	public String deleteFiSui(Long ref, String mcf, int page, int size) {
 		ficheSuiviRepository.deleteById(ref);
-		return "redirect:/ficheList?page=" + page + "&size=" + size + "&mc5=" + mc5;
+		return "redirect:/ficheList?page=" + page + "&size=" + size + "&mcf=" + mcf;
 
 	}
 
-//	@GetMapping("/changeDep")
-//	public String change(Model model, String depName, FicheSuivi ficheSuivi) {
-//		System.out.println("Departement Name : " + depName);
-//		System.out.println("Departement : " + departementR.findBydepName(depName));
-//		Long id = departementR.findBydepName(depName).getDirection().getDirectId();
-//		directionRepository.findById(id).orElse(null);
-//		return "fiche";
-//	}
+
 
 	@RequestMapping(value = "/fiche", method = RequestMethod.GET)
 	public String fiche(Model model, String depName, FicheSuivi ficheSuivi) {
@@ -114,15 +104,13 @@ public class FicheSuiviController {
 			Direction direction = directionRepository.findByDirectId(id);
 			model.addAttribute("directName", direction.getDirectName());
 			model.addAttribute("selectDepartement", depName);
-//			FicheSuivi fiche = ficheSuiviRepository.findFicheByDepartNameAndDirectName(directionName, departementName);
-//			System.out.println("Fiche : " + fiche.getIniName());
-//			model.addAttribute("ficheSuivi",fiche);
+
 		}else {
 			model.addAttribute("selectDepartement","Select your departement");
 		}
 
-		model.addAttribute("ficheSuivi", new FicheSuivi());
-
+		model.addAttribute("ficheSuivi", new FicheSuivi(depName));
+		
 		model.addAttribute("departement", departementR.findAll());
 
 		return "fiche"; // LE NOM DE LA VUE.HTML
@@ -161,7 +149,9 @@ public class FicheSuiviController {
 	public String saveFicheSui(Model model, @Valid FicheSuivi ficheSuivi, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
 			return "EditFiSui";
+		//ana knfker kif ndiir liha 3rft lprob hia m3roufa ghiir f'form lowla dyel depart ah 
 		ficheSuiviRepository.save(ficheSuivi);
+		System.out.println("Nom depart : " + ficheSuivi.getNomDepart());
 		return "ConfirmFiSui";
 		// LE NOM DE LA VUE.HTML
 
@@ -190,14 +180,14 @@ public class FicheSuiviController {
 		return "ConfirmFiSui";// nom de la vue
 	}
 
-//db departement ash ghadi nselectionniw gtli lia ?! db ana bghit une fois n selectionni departement tla3 lia direction li huwa fiha Okay 
+
 //controlleur cote Responsable 	initiateur
 
 	@RequestMapping(value = "/historiqueIni")
 	public String historiqueIni(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "size", defaultValue = "7") int size,
-			@RequestParam(name = "mc5", defaultValue = "") String mc5) {
-//	Page<FicheSuivi> pageficheSuivis=ficheSuiviRepository.chercher("%"+mc5+"%",new PageRequest(page,size));
+			@RequestParam(name = "mcf", defaultValue = "") String mcf) {
+//	Page<FicheSuivi> pageficheSuivis=ficheSuiviRepository.chercher("%"+mcf+"%",new PageRequest(page,size));
 
 		Page<FicheSuivi> pageficheSuivis = ficheSuiviRepository.separer2(new PageRequest(page, size));
 
@@ -206,28 +196,16 @@ public class FicheSuiviController {
 		model.addAttribute("pages", pages);
 		model.addAttribute("size", size);
 		model.addAttribute("pageCourante", page);
-		model.addAttribute("mc5", mc5);
+		model.addAttribute("mcf", mcf);
 
 		// ficheSuiviRepository.findById(ref)
 
 		return "historiqueIni";
 
 	}
-	/*
-	 * @Autowired DepartementRepository departementRepository;
-	 * 
-	 * @RequestMapping(value="/getDepName",method=RequestMethod.POST)
-	 * 
-	 * public String getDepName(Model model, String s) { String
-	 * s1=departementRepository.findDirectionByDept(s);
-	 * model.addAttribute("dirName", s1); System.out.println("hhhhhhhhhhhhhhhh"+s1);
-	 * return s1;
-	 * 
-	 * }
-	 */
+	
 
-	// fin kt3amrii dik la liste dyel les departement hna fl controller wach fin
-	// kan7t les donn
+	
 	/*
 	 * @RequestMapping(value = "/motif") public String motif(Model model,
 	 * 

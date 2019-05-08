@@ -34,6 +34,12 @@ public class FicheSuivi implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "CODE_DIR")
 	private Direction direction;
+
+	public FicheSuivi(String nomDepart) {
+		super();
+		NomDepart = nomDepart;
+	}
+
 	public FicheSuivi() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -13,9 +13,7 @@
 	
 		<div class="container" layout:fragment="content" >
 			<form th:action="@{listDemande}" method="get">
-				<label>Mot Clé:</label> <input type="text" name="motcle"
-					th:value="${motcle}" />
-				<button class="btn btn-primary">Chercher</button>
+				
 			</form>
 			
 		<div class="container">
@@ -36,7 +34,7 @@
 						<td th:text="${fs.intituleMaintenance}">Intitulé de la maintenance</td>
 						<td th:text="${fs.NomApplication}">Application</td>
 						<td th:text="${fs.dateEnvoi}">Date Envoi</td>
-						<td><a th:href="@{editfiSui(ref=${fs.ref},page=${pageCourante},size=${size},mc5=${mc5})}">Afficher</a></td>
+						<td><a th:href="@{editfiSui(ref=${fs.ref},page=${pageCourante},size=${sizef})}">Afficher</a></td>
 					</tr>
 
 				</tbody>
@@ -48,7 +46,7 @@
 			<ul class="nav nav-pills">
 				<li th:class="${pageCourante}==${status.index}?'active':''"
 					th:each="fs,status:${pages}"><a
-					th:href="@{listFicheSuivis(page=${status.index},size=${size},mc5=${mc5})}"
+					th:href="@{listFicheSuivis(page=${status.index},size=${sizef})}"
 					th:text="${status.index}"></a>
 				</li>
 			</ul>

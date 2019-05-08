@@ -18,10 +18,14 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Demande de Maintenance</div>
 				<div class="panel-body">
-					<div class="form-group">
-						<label>Département:</label>
-						<form th:action="@{/fiche}" method="get" id="form">
-							<div class="div_box">
+					<div class="form-group">							
+                   <label>Département:</label>
+                  
+						<form th:action="@{/fiche}" method="get" id="form" >
+						 
+							<div class="div_box" th:action="@{/fiche}" method="get" id="form">
+							<input class="form-control"
+									type="hidden" name="NomDepart" th:value="${NomDepart}" />
 								<select id="depId" name="depName"
 									onchange="document.getElementById('form').submit();">
 									<option th:value="top" th:text="${selectDepartement}"></option>
@@ -31,29 +35,20 @@
 								</select> <br>
 
 							</div>
+							
 						</form>
-						<form th:action="@{/saveFiche}" method="post">
+						</div>
+
+						<form th:action="@{/saveFicheSui}" method="post">
+						<div class="form-group">
+								 <input type="hidden" name="NomDepart" th:value="${ficheSuivi.NomDepart}" />
+							</div>
 							<div class="form-group">
 								<label>Initiateur:</label> <input class="form-control"
 									type="text" name="iniName" th:value="${ficheSuivi.iniName}" />
 								<span class="red" th:errors="${ficheSuivi.iniName}"></span>
 							</div>
-
-							<!-- 						<div class="form-group"> -->
-							<!-- 							<label>Département:</label> -->
-							<!-- 							<form th:action="@{/changeDep}" method="get" id="form"> -->
-							<!-- 								<div class="div_box"> -->
-							<!-- 									<select id="depId" name="depName" -->
-							<!-- 										onchange="document.getElementById('form').submit();"> -->
-							<!-- 										<option value="top">Select your departement</option> -->
-							<!-- 										<option th:each="dep : ${departement}" value="${dep.depName}" -->
-							<!-- 											th:text="${dep.depName}"></option> -->
-
-							<!-- 									</select> <br> -->
-
-							<!-- 								</div> -->
-							<!-- 							</form> -->
-							<!-- 					</div> -->
+	
 							<div class="form-group">
 								<label>Direction:</label> <input class="form-control"
 									type="text" name="NomDirection" th:value="${directName}" /> <span
@@ -77,9 +72,9 @@
 
 
 
-							<button type="submit" class="btn btn-primary">envoyer</button>
+							<button type="submit" class="btn btn-primary">Envoyer</button>
 
-							<div></div>
+							
 						</form>
 					</div>
 				</div>
@@ -109,20 +104,7 @@
 					dt1 = "0" + dt1;
 				var d2 = y1 + "-" + m1 + "-" + dt1;
 			</script>
-			<!-- document.getElementById('d1').value=d2;
-$(document).ready(function() { 
-   alert(); 
-}); 
-
-$("button").click(function(){
-	alert();
-	  $.get("/directionByDd?depId="+depId, function(data, status){
-	    alert("Data: " + data + "\nStatus: " + status);
-	  });
-	});
-
-</script>
- -->
+			
 
 
 		</div>

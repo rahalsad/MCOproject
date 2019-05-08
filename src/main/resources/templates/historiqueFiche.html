@@ -13,9 +13,9 @@
 	
 		<div class="container" layout:fragment="content"  >
 			<form th:action="@{ficheList}" method="get">
-				<label>Mot Clé:</label> <input type="text" name="mc5"
-					th:value="${mc5}" />
-				<button class="btn btn-primary">Chercher</button>
+				<label>Mot Clé:</label> <input type="text" name="mcf"
+					th:value="${mcf}" />
+				<button class="btn btn-primary">Chercher par departement</button>
 			</form>
 			
 		<div class="container">
@@ -61,9 +61,9 @@
 						<td th:text="${fs.dateProd}"></td>
 						<td th:text="${fs.dateModif}"></td>
 						<td><a th:href="@{editfiSui(id=fs.ref)}"></a></td>
-						<td><a th:href="@{editfiSui(ref=${fs.ref},page=${pageCourante},size=${size},mc5=${mc5})}">Edit</a></td>
+						<td><a th:href="@{editfiSui(ref=${fs.ref},page=${pageCourante},size=${size},mcf=${mcf})}">Edit</a></td>
 					    <td><a onclick="return confirm('Etes vous sure?')"
-							th:href="@{deleteFiSui(ref=${fs.ref},page=${pageCourante},size=${size},mc5=${mc5})}">Delete</a></td>
+							th:href="@{deleteFiSui(ref=${fs.ref},page=${pageCourante},size=${size},mcf=${mcf})}">Delete</a></td>
 						
 					</tr>
 
@@ -76,7 +76,7 @@
 			<ul class="nav nav-pills">
 				<li th:class="${pageCourante}==${status.index}?'active':''"
 					th:each="fs,status:${pages}"><a
-					th:href="@{ficheList(page=${status.index},size=${size},mc5=${mc5})}"
+					th:href="@{ficheList(page=${status.index},size=${size},mcf=${mcf})}"
 					th:text="${status.index}"></a>
 				</li>
 			</ul>
