@@ -12,9 +12,9 @@
 <body class="container spacer">
 	
 		<div class="container" layout:fragment="content"  >
-			<form th:action="@{ficheList}" method="get">
-				<label>Mot Clé:</label> <input type="text" name="mc5"
-					th:value="${mc5}" />
+			<form th:action="@{historiqueIni}" method="get">
+				<label>Mot Clé:</label> <input type="text" name="mcf"
+					th:value="${mcf}" />
 				<button class="btn btn-primary">Chercher</button>
 			</form>
 			
@@ -31,6 +31,7 @@
 						<th>Intitule de la Maintenance:</th>
 					    <th>Type de la maintenance:</th>
 						<th>Nom du ResponsableMCO:</th>
+						<th>Statut de la maintenance:</th>
 						<th>Remarques:</th>
 						
 						
@@ -48,6 +49,7 @@
 						<td th:text="${fs.intituleMaintenance}"></td>
 						<td th:text="${fs.type}"></td>
 						<td th:text="${fs.respo}"></td>
+						<td th:text="${fs.statut}"></td>
 						<td th:text="${fs.remarque}"></td>
 					</tr>
 
@@ -60,7 +62,7 @@
 			<ul class="nav nav-pills">
 				<li th:class="${pageCourante}==${status.index}?'active':''"
 					th:each="fs,status:${pages}"><a
-					th:href="@{ficheList(page=${status.index},size=${size},mc5=${mc5})}"
+					th:href="@{ficheList(page=${status.index},size=${sizei},mcf=${mcf})}"
 					th:text="${status.index}"></a>
 				</li>
 			</ul>

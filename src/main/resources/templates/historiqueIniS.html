@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="template3">
+	layout:decorator="template2">
 <head>
 <meta charset="utf-8" />
 <title>Fiche suivi</title>
@@ -12,10 +12,10 @@
 <body class="container spacer">
 	
 		<div class="container" layout:fragment="content"  >
-			<form th:action="@{ficheList}" method="get">
+			<form th:action="@{historiqueIniS}" method="get">
 				<label>Mot Clé:</label> <input type="text" name="mcf"
 					th:value="${mcf}" />
-				<button class="btn btn-primary">Chercher par departement</button>
+				<button class="btn btn-primary">Chercher</button>
 			</form>
 			
 		<div class="container">
@@ -23,50 +23,34 @@
 			<table class="table table-striped table-bordered table-responsive" role="grid">
 				<thead>
 					<tr>
-						<th>Referentiel:</th>
+						<!-- <th>Referentiel:</th> -->
 						<th>Initiateur:</th>
 						<th>Departement:</th>
 						<th>Direction:</th>
 						<th>Application:</th>
 						<th>Intitule de la Maintenance:</th>
-						<th>Date d'envoi et Reception:</th>
-						<th>Type de la maintenance:</th>
+					    <th>Type de la maintenance:</th>
 						<th>Nom du ResponsableMCO:</th>
-						<th>Date de prise en charge:</th>
-						<th>Charge estimée DEV:</th>
-						<th>Charge consommée:</th>
-						<th>Taux d'avancement:</th>
 						<th>Statut de la maintenance:</th>
-						<th>Date mise en production:</th>
-						<th>Date de la dernière modification:</th>
 						<th>Remarques:</th>
+						
+						
+						
 					</tr>
 
 				</thead>
 				<tbody>
 					<tr role="row" class="odd" th:each="fs:${listFicheSuivis}" >
-						<td th:text="${fs.ref}"></td>
+						
 						<td th:text="${fs.iniName}"></td>
 						<td th:text="${fs.NomDepart}"></td>
 						<td th:text="${fs.NomDirection}"></td>
 						<td th:text="${fs.NomApplication}"></td>
 						<td th:text="${fs.intituleMaintenance}"></td>
-						<td th:text="${fs.dateEnvoi}"></td>
 						<td th:text="${fs.type}"></td>
 						<td th:text="${fs.respo}"></td>
-						<td th:text="${fs.dateCharge}"></td>
-						<td th:text="${fs.chargeEstim}"></td>
-						<td th:text="${fs.chargeConsom}"></td>
-						<td th:text="${fs.tauxAvanc}"></td>
 						<td th:text="${fs.statut}"></td>
-						<td th:text="${fs.dateProd}"></td>
-						<td th:text="${fs.dateModif}"></td>
 						<td th:text="${fs.remarque}"></td>
-						<td><a th:href="@{editfiSui(id=fs.ref)}"></a></td>
-						<td><a th:href="@{editfiSui(ref=${fs.ref},page=${pageCourante},size=${size},mcf=${mcf})}">Edit</a></td>
-					    <td><a onclick="return confirm('Etes vous sure?')"
-							th:href="@{deleteFiSui(ref=${fs.ref},page=${pageCourante},size=${size},mcf=${mcf})}">Delete</a></td>
-						
 					</tr>
 
 				</tbody>
@@ -78,7 +62,7 @@
 			<ul class="nav nav-pills">
 				<li th:class="${pageCourante}==${status.index}?'active':''"
 					th:each="fs,status:${pages}"><a
-					th:href="@{ficheList(page=${status.index},size=${size},mcf=${mcf})}"
+					th:href="@{ficheList(page=${status.index},size=${sizei},mcf=${mcf})}"
 					th:text="${status.index}"></a>
 				</li>
 			</ul>

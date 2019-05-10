@@ -11,12 +11,22 @@ import com.example.demo.entities.FicheSuivi;
 
 	public interface FicheSuiviRepository extends JpaRepository<FicheSuivi , Long>{
 
-		@Query("select fs from FicheSuivi fs where str(fs.NomDepart) like:x")
-		public Page<FicheSuivi> chercher(@Param("x")String mcf, Pageable pageable );
+		//@Query("select fs from FicheSuivi fs where str(fs.NomDepart) like:x")
+		//public Page<FicheSuivi> chercher(@Param("x")String mcf, Pageable pageable );
 		@Query("select fs from FicheSuivi fs where fs.statut is null")
 		public Page<FicheSuivi> separer( Pageable pageable );
-		@Query("select fs from FicheSuivi fs where fs.statut is not null")
-		public Page<FicheSuivi> separer2( Pageable pageable );
+		//@Query("select fs from FicheSuivi fs where fs.statut is not null")
+		//public Page<FicheSuivi> separer2(Pageable pageable );
+		
+		@Query("select fs from FicheSuivi fs where fs.statut is not null and str(fs.NomDepart) like:x")
+		public Page<FicheSuivi> separer3(@Param("x")String mcf,Pageable pageable );
+		
+	/*
+	 * @Query("select fs from FicheSuivi fs where fs.statut is not null and
+	 * str(fs.NomDepart) like:x and ) public Page<FicheSuivi>
+	 * separer3(@Param("x")String mcf,Pageable pageable );
+	 */
+		
 		
 	/*
 	 * @Query("select fs from FicheSuivi fs where fs.NomDirection = :x and fs.NomDepart = :y"
@@ -24,8 +34,10 @@ import com.example.demo.entities.FicheSuivi;
 	 * NomDirection, @Param("y")String NomDepart);
 	 */
 		
+	
 	/*
-	 * @Query("select fs from FicheSuivi fs where fs.statut=:'Rejet'")
-	 *  public Page<FicheSuivi> decision( Pageable pageable );
+	 * @Query("select fs from FicheSuivi fs where fs.statut=Rejet") public
+	 * Page<FicheSuivi> decision( Pageable pageable );
 	 */
+	 
 }

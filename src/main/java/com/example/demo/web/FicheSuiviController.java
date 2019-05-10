@@ -13,6 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,8 +44,9 @@ public class FicheSuiviController {
 			@RequestParam(name="page", defaultValue="0")int pagef,
 			@RequestParam(name="size", defaultValue="3")int sizef,
 			@RequestParam(name="mcf", defaultValue="")String mcf) {
-		Page<FicheSuivi> pageficheSuivis=ficheSuiviRepository.chercher("%"+mcf+"%",new PageRequest(pagef,sizef));
-		
+		Page<FicheSuivi> pageficheSuivis=ficheSuiviRepository
+				.separer3("%"+mcf+"%",new PageRequest(pagef,sizef));
+		        
 		model.addAttribute("listFicheSuivis", pageficheSuivis.getContent());
 		int [] pages=new int[pageficheSuivis.getTotalPages()];
 		model.addAttribute("pages",pages);
@@ -53,8 +55,9 @@ public class FicheSuiviController {
 		model.addAttribute("mcf",mcf);
 
 		
-		//Page<FicheSuivi> pageficheSuiviss=ficheSuiviRepository.separer2(new PageRequest(page,size));
+		//Page<FicheSuivi> pageficheSuiviss=ficheSuiviRepository.separer2(new PageRequest(pagef,sizef));
 		//model.addAttribute("listFicheSuivis", pageficheSuiviss.getContent());
+		
 		return "historiqueFiche";
 
 	}
@@ -136,11 +139,13 @@ public class FicheSuiviController {
 	private void sendEmail() throws Exception {
 		MimeMessage message = sender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message);
-
+		
 		helper.setTo("sadiqi.fatima.ezzahra@gmail.com");
 		helper.setText("vous avez une nouvelle demande");
 		helper.setSubject("Demande de maintenance");
-
+		
+		
+        sender.send(message);
 	}
 
 	// controlleur cote Responsable mco
@@ -149,10 +154,12 @@ public class FicheSuiviController {
 	public String saveFicheSui(Model model, @Valid FicheSuivi ficheSuivi, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
 			return "EditFiSui";
-		//ana knfker kif ndiir liha 3rft lprob hia m3roufa ghiir f'form lowla dyel depart ah 
+		
 		ficheSuiviRepository.save(ficheSuivi);
 		System.out.println("Nom depart : " + ficheSuivi.getNomDepart());
+		
 		return "ConfirmFiSui";
+		
 		// LE NOM DE LA VUE.HTML
 
 	}
@@ -166,7 +173,7 @@ public class FicheSuiviController {
 
 	}
 
-//controlleur cote Responsable 	initiateur
+//controlleur cote 	initiateur
 	@RequestMapping(value = "/saveFiche", method = RequestMethod.POST) // == @PostMapping("/saveFiche")
 	public String saveFiche(Model model, @Valid FicheSuivi ficheSuivi, BindingResult bindingResult) throws Exception {
 		if (bindingResult.hasErrors())
@@ -177,25 +184,25 @@ public class FicheSuiviController {
 
 		ficheSuiviRepository.save(ficheSuivi);
 		sendEmail();
-		return "ConfirmFiSui";// nom de la vue
+		return "confirmDemande";// nom de la vue
 	}
 
 
 //controlleur cote Responsable 	initiateur
 
 	@RequestMapping(value = "/historiqueIni")
-	public String historiqueIni(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "7") int size,
+	public String historiqueIni(Model model, @RequestParam(name = "page", defaultValue = "0") int pagei,
+			@RequestParam(name = "size", defaultValue = "7") int sizei,
 			@RequestParam(name = "mcf", defaultValue = "") String mcf) {
 //	Page<FicheSuivi> pageficheSuivis=ficheSuiviRepository.chercher("%"+mcf+"%",new PageRequest(page,size));
 
-		Page<FicheSuivi> pageficheSuivis = ficheSuiviRepository.separer2(new PageRequest(page, size));
+		Page<FicheSuivi> pageficheSuivis = ficheSuiviRepository.separer3("%"+mcf+"%",new PageRequest(pagei,sizei));
 
 		model.addAttribute("listFicheSuivis", pageficheSuivis.getContent());
 		int[] pages = new int[pageficheSuivis.getTotalPages()];
 		model.addAttribute("pages", pages);
-		model.addAttribute("size", size);
-		model.addAttribute("pageCourante", page);
+		model.addAttribute("size", sizei);
+		model.addAttribute("pageCourante", pagei);
 		model.addAttribute("mcf", mcf);
 
 		// ficheSuiviRepository.findById(ref)
@@ -205,6 +212,31 @@ public class FicheSuiviController {
 	}
 	
 
+	@RequestMapping(value = "/historiqueIniS")
+	public String historiqueIniS(Model model, @RequestParam(name = "page", defaultValue = "0") int pagei,
+			@RequestParam(name = "size", defaultValue = "7") int sizei,
+			@RequestParam(name = "mcf", defaultValue = "") String mcf) {
+
+
+		Page<FicheSuivi> pageficheSuivis = ficheSuiviRepository.separer3("%"+mcf+"%",new PageRequest(pagei,sizei));
+
+		model.addAttribute("listFicheSuivis", pageficheSuivis.getContent());
+		int[] pages = new int[pageficheSuivis.getTotalPages()];
+		model.addAttribute("pages", pages);
+		model.addAttribute("size", sizei);
+		model.addAttribute("pageCourante", pagei);
+		model.addAttribute("mcf", mcf);
+
+		// ficheSuiviRepository.findById(ref)
+
+		return "historiqueIni";
+
+	}
+	
+	
+	
+	 
+		
 	
 	/*
 	 * @RequestMapping(value = "/motif") public String motif(Model model,
