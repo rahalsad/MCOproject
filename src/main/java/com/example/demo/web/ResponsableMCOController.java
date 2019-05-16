@@ -55,26 +55,26 @@ public class ResponsableMCOController {
 		model.addAttribute("mcl",mcl);
 		
 		
-		return "responsableMCOs";		
+		return "responsableMCOs.html";		
 	}
 	@RequestMapping(value="/deleteres",method=RequestMethod.GET)
 	
     public String deleteres(Long resId,String mcl,int page, int size) {
        responsableMCORepository.deleteById(resId);
-       return "redirect:/respo?page="+page+"&size="+size+"&mcl="+mcl;
+       return "redirect:/respo.html?page="+page+"&size="+size+"&mcl="+mcl;
        
     }
 	@RequestMapping(value="/formres",method=RequestMethod.GET)
 	public String formResponsableMCO(Model model ) {
 		model.addAttribute("responsableMCO",new ResponsableMCO());
-		return "FormResponsableMCO"; //LE NOM DE LA VUE.HTML
+		return "FormResponsableMCO.html"; //LE NOM DE LA VUE.HTML
 	
 	}
 	@RequestMapping(value="/editres",method=RequestMethod.GET)
 	public String editres(Model model ,Long resId) {
 		ResponsableMCO r=responsableMCORepository.findById(resId).orElse(null);
 		model.addAttribute("responsableMCO",r);
-		return "EditResponsableMCO"; //LE NOM DE LA VUE.HTML
+		return "EditResponsableMCO.html"; //LE NOM DE LA VUE.HTML
 	
 	}
 	
@@ -82,10 +82,10 @@ public class ResponsableMCOController {
 	public String saveres(Model model ,@Valid ResponsableMCO responsableMCO,
 			BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
-			return "FormResponsableMCO";
+			return "FormResponsableMCO.html";
 		responsableMCORepository.save(responsableMCO);
 		
-		return "ConfirmationRes"; //LE NOM DE LA VUE.HTML
+		return "ConfirmationRes.html"; //LE NOM DE LA VUE.HTML
 	
 	}
 }

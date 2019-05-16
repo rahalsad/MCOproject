@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8" />
+<title>departement</title>
+<!-- <link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css"
+href="../static/css/style.css"
+th:href="@{/css/style.css}"/> -->
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body class="container spacer">
+	
+		<div class="container" layout:fragment="content" >
+			<form th:action="@{doc}" method="get">
+				<label>Mot Clé:</label> <input type="text" name="mc2"
+					th:value="${mc2}" />
+				<button class="btn btn-primary">Chercher</button>
+			</form>
+			
+		<div class="container">
+			<h3>Liste Des doc</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nom du document</th>
+						
+					    
+					</tr>
+
+				</thead>
+				<tbody>
+					<tr th:each="dc:${listDocumentations}">
+						<td th:text="${dc.docId}"></td>
+						<td th:text="${dc.docName}"></td>
+						
+					</tr>
+
+				</tbody>
+
+			</table>
+		</div>
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li th:class="${pageCourante}==${status.index}?'active':''"
+					th:each="page,status:${pages}"><a
+					th:href="@{doc(page=${status.index},size=${size},mc2=${mc2})}"
+					th:text="${status.index}"></a>
+				</li>
+			</ul>
+		</div>
+		</div>
+	
+
+</body>
+</html>

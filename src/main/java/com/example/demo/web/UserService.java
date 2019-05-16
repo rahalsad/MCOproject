@@ -78,7 +78,7 @@ import org.springframework.web.context.request.WebRequest;
 	@RequestMapping(value="/")
 	public String home(Model model){
 
-	return "redirect:/index";
+	return "redirect:/index.html";
 	}
 	
 /*	@RequestMapping(value="/fiche")
@@ -91,7 +91,7 @@ import org.springframework.web.context.request.WebRequest;
 	@RequestMapping(value="/registration",method=RequestMethod.GET)
 	public String registration(Model model) {
 		model.addAttribute("users",new Users());
-		return "registration"; //LE NOM DE LA VUE.HTML
+		return "registration.html"; //LE NOM DE LA VUE.HTML
 	
 	}
 	
@@ -100,9 +100,9 @@ import org.springframework.web.context.request.WebRequest;
 	public String saveUser(Model model ,@Valid Users users,
 			BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
-			return "registration";
+			return "registration.html";
 		userRepository.save(users);
-		return "ConfirmUser"; //LE NOM DE LA VUE.HTML
+		return "ConfirmUser.html"; //LE NOM DE LA VUE.HTML
 	
 	}
 	

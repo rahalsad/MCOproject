@@ -229,11 +229,16 @@ public class FicheSuiviController {
 
 		// ficheSuiviRepository.findById(ref)
 
-		return "historiqueIni";
+		return "historiqueIniS";
 
 	}
 	
-	
+	  @RequestMapping(value="/chart", method= RequestMethod.GET) 
+	  public String chart() { 
+		  return "chart"; 
+	  }
+	 
+	}
 	
 	 
 		
@@ -258,4 +263,4 @@ public class FicheSuiviController {
 	 * }
 	 */
 
-}
+

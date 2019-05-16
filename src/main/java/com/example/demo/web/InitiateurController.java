@@ -39,26 +39,26 @@ public class InitiateurController {
 		model.addAttribute("mc",mc);
 		
 		
-		return "initiateurs";		
+		return "initiateurs.html";		
 	}
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
 	
     public String delete(Long iniId,String mc,int page, int size) {
        initiateurRepository.deleteById(iniId);
-       return "redirect:/index?page="+page+"&size="+size+"&mc="+mc;
+       return "redirect:/index.html?page="+page+"&size="+size+"&mc="+mc;
        
     }
 	@RequestMapping(value="/form",method=RequestMethod.GET)
 	public String formInitiateur(Model model ) {
 		model.addAttribute("initiateur",new Initiateur());
-		return "FormInitiateur"; //LE NOM DE LA VUE.HTML
+		return "FormInitiateur.html"; //LE NOM DE LA VUE.HTML
 	
 	}
 	@RequestMapping(value="/edit",method=RequestMethod.GET)
 	public String edit(Model model ,Long iniId) {
 		Initiateur i=initiateurRepository.findById(iniId).orElse(null);
 		model.addAttribute("initiateur",i);
-		return "EditInitiateur"; //LE NOM DE LA VUE.HTML
+		return "EditInitiateur.html"; //LE NOM DE LA VUE.HTML
 	
 	}
 	
@@ -66,9 +66,9 @@ public class InitiateurController {
 	public String save(Model model ,@Valid Initiateur initiateur,
 			BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
-			return "FormInitiateur";
+			return "FormInitiateur.html";
 		initiateurRepository.save(initiateur);
-		return "Confirmation"; //LE NOM DE LA VUE.HTML
+		return "Confirmation.html"; //LE NOM DE LA VUE.HTML
 	
 	}
 }

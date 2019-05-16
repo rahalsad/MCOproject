@@ -1,0 +1,79 @@
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template2">
+
+
+<head>
+<meta charset="utf-8" />
+<title>Insert title here</title>
+
+
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+   //   google.charts.load('current', {'packages':['bar']});
+     // google.charts.setOnLoadCallback(drawChart);
+      $(document)
+			.ready(
+					function() {
+      $.ajax({
+			type : "GET",
+			dataType : "json",
+			contentType : "application/json",
+			url : "/api/chart/cat1",
+			success : function(result) {
+				console.log(result);
+				google.charts.load('current', {
+					'packages' : [ 'bar' ]
+				});
+				google.charts.setOnLoadCallback(function() {
+					console.log(result);
+					drawChart(result);
+				});
+			}
+      });
+      function drawChart(result) {
+          var data = google.visualization.arrayToDataTable([
+            ['Year', 'correctives', 'amelioratives', 'evolutives'],
+            ['finalisées',result.finalisees.correctives,result.finalisees.amelioratives, result.finalisees.evolutives],
+            ['en cours',result.enCours.correctives,result.enCours.amelioratives, result.enCours.evolutives]
+         
+          ]);
+
+          var options = {
+            chart: {
+              title: 'Company Performance',
+              subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+            }
+          };
+
+          var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+          chart.draw(data, google.charts.Bar.convertOptions(options));
+      
+					
+
+	
+
+      }
+					});
+    </script>
+
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<table>
+				<tr>
+			<!-- 		<td><div id="piechart" style="border: 1px solid #ccc"></div></td> -->
+					<td><div id="columnchart_material" style="width: 800px; height: 500px;"></div></td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+</body>
+</html>

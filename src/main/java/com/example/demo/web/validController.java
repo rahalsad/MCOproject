@@ -40,7 +40,7 @@ public class validController {
 		model.addAttribute("mc1",mc1);
 		
 		
-		return "ListInscrp";		
+		return "ListInscrp.html";		
 	}
 	
 @RequestMapping(value="/validateUser",method=RequestMethod.GET)
@@ -74,7 +74,7 @@ public class validController {
 	
     public String refus(Long userId,String mc1,int page, int size) {
        userRepository.deleteById(userId);
-       return "redirect:/ListInscrp?page="+page+"&size="+size+"&mc1="+mc1;
+       return "redirect:/ListInscrp.html?page="+page+"&size="+size+"&mc1="+mc1;
        
     }
 	

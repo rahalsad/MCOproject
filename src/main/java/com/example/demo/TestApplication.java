@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 
 
@@ -18,6 +19,7 @@ import com.example.demo.entities.Users;
 import com.example.demo.entities.role;
 
 
+
 /*import com.example.demo.entities.Departement;
 import com.example.demo.entities.Direction;
 import com.example.demo.entities.Initiateur;
@@ -25,6 +27,7 @@ import com.example.demo.entities.ResponsableMCO;*/
 
 
 @SpringBootApplication
+
 public class TestApplication implements CommandLineRunner {
 	
 	

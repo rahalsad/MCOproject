@@ -23,7 +23,7 @@ public class FicheSuivi implements Serializable {
 	private String dateEnvoi;
 	private Long chargeEstim;
 	private Long chargeConsom;
-	private String tauxAvanc;
+	private Long tauxAvanc;
 	private String statut;
 	private String respo;
 	private String type;
@@ -46,7 +46,7 @@ public class FicheSuivi implements Serializable {
 	}
 
 	public FicheSuivi(String iniName, String nomDirection, String nomDepart, String nomApplication,
-			String intituleMaintenance, String dateEnvoi, Long chargeEstim, Long chargeConsom, String tauxAvanc,
+			String intituleMaintenance, String dateEnvoi, Long chargeEstim, Long chargeConsom, Long tauxAvanc,
 			String statut, String respo, String type, String remarque, String dateModif, String dateCharge,
 			String dateProd, Direction direction) {
 		super();
@@ -141,11 +141,11 @@ public class FicheSuivi implements Serializable {
 		this.chargeConsom = chargeConsom;
 	}
 
-	public String getTauxAvanc() {
+	public Long getTauxAvanc() {
 		return tauxAvanc;
 	}
 
-	public void setTauxAvanc(String tauxAvanc) {
+	public void setTauxAvanc(Long tauxAvanc) {
 		this.tauxAvanc = tauxAvanc;
 	}
 
