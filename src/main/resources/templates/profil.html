@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="template1"> 
+<head>
+<meta charset="utf-8"/>
+<title>utilisateur</title>
+ <link rel="stylesheet" type="text/css"
+href="../static/css/bootstrap.min.css"
+th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css"
+href="../static/css/style.css"
+th:href="@{/css/style.css}"/>
+</head>
+<body>
+<!-- afficher un formulaire de saisi -->
+   <div layout:fragment="content" >
+	<div class="container spacer col-md-6 col-xs-12" >
+		<div class="panel panel-default">
+			<div class="panel-heading">profil</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<label>username</label>
+					<label th:text="${users.usrename}"></label>
+				</div>
+				<div class="form-group">
+				    <label >password</label>
+					<label th:text="${users.password}"></label>
+					<a th:href="@{/ChangePassword.html}"
+						th:text="#{message.resetPassword}">reset</a>
+					
+				</div>
+				<div class="form-group">
+				    <label>Matricule</label>
+					<label th:text="${users.matricule}"></label>
+				</div>
+				<div class="form-group">
+				    <label>Email:</label>
+					<label th:text="${users.iniEmail}"></label>
+				</div>
+				<div class="form-group">
+				    <label>NumTele:</label>
+					<label th:text="${users.iniNumTel}"></label>
+				</div>
+				<div class="form-group">
+				    <label>Direction:</label>
+					<label th:text="${users.directName}"></label>
+				</div>
+				<div class="form-group">
+				    <label>Departement:</label>
+					<label th:text="${users.depName}"></label>
+				</div>
+			</div>
+			</div>
+		</div>
+	
+	</div>
+	
+</body>
+</html>

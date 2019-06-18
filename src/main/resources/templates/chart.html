@@ -1,12 +1,12 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="template2">
+	layout:decorator="template3">
 
 
 <head>
 <meta charset="utf-8" />
-<title>Insert title here</title>
+<title>charts</title>
 
 
 <script
@@ -37,22 +37,48 @@
       });
       function drawChart(result) {
           var data = google.visualization.arrayToDataTable([
-            ['Year', 'correctives', 'amelioratives', 'evolutives'],
+            ['Statut', 'correctives', 'amelioratives', 'evolutives'],
             ['finalisées',result.finalisees.correctives,result.finalisees.amelioratives, result.finalisees.evolutives],
             ['en cours',result.enCours.correctives,result.enCours.amelioratives, result.enCours.evolutives]
          
           ]);
-
+          
+          
+          
+          
+          
+          
+          
+  			var dt = [];
+          
+          const names= result.ret4.map(ii => 
+          
+          		dt.push([ii.name, ii.finalisees, ii.enCours])
+          		
+          
+          );
+          
+          dt.unshift(['Direction', 'Finalisées', 'en cours']);
+         console.log(dt);
+          
+                  
+          var data2 = google.visualization.arrayToDataTable(dt);
+          
           var options = {
             chart: {
-              title: 'Company Performance',
-              subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+              title: 'Performance de la direction ',
+              subtitle: 'MCO',
+              
             }
           };
 
           var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
           chart.draw(data, google.charts.Bar.convertOptions(options));
+          
+          var chart2 = new google.charts.Bar(document.getElementById('piechart'));
+
+          chart2.draw(data2, google.charts.Bar.convertOptions(options));
       
 					
 
@@ -70,6 +96,8 @@
 				<tr>
 			<!-- 		<td><div id="piechart" style="border: 1px solid #ccc"></div></td> -->
 					<td><div id="columnchart_material" style="width: 800px; height: 500px;"></div></td>
+					
+					<td><div id="piechart" style="width: 800px; height: 500px;"></div></td> 
 				</tr>
 			</table>
 		</div>

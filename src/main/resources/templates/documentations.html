@@ -4,47 +4,51 @@
 	layout:decorator="template1">
 <head>
 <meta charset="utf-8" />
-<title>departement</title>
-<!-- <link rel="stylesheet" type="text/css"
+<title>documentation</title>
+<link rel="stylesheet" type="text/css"
 	href="../static/css/bootstrap.min.css"
 	th:href="@{/css/bootstrap.min.css}" />
 	<link rel="stylesheet" type="text/css"
 href="../static/css/style.css"
-th:href="@{/css/style.css}"/> -->
+th:href="@{/css/style.css}"/>
 <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" />
 </head>
 <body class="container spacer">
 	
-		<div class="container" layout:fragment="content" >
-			<form th:action="@{doc}" method="get">
-				<label>Mot Clé:</label> <input type="text" name="mc2"
-					th:value="${mc2}" />
-				<button class="btn btn-primary">Chercher</button>
-			</form>
+		<div class="container" layout:fragment="content" > 
+		
+			<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+          <div class="form-group">
+            <label class="control-label" for="uploadfile">Upload File:</label>
+            <input type="file" class="form-control" id="uploadfile" placeholder="Upload File"  name="uploadfile"></input>
+          </div>
+          <button type="submit" class="btn btn-default" id="btnSubmit">Upload</button>
+          <a href="/files" class="btn btn-default" role="button">Files</a>
+        </form>
+        <div th:if="${message}">
+          <span th:text="${message}"/>
+        </div>
 			
 		<div class="container">
 			<h3>Liste Des doc</h3>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Nom du document</th>
-						
-					    
-					</tr>
-
-				</thead>
-				<tbody>
-					<tr th:each="dc:${listDocumentations}">
-						<td th:text="${dc.docId}"></td>
-						<td th:text="${dc.docName}"></td>
-						
-					</tr>
-
-				</tbody>
-
-			</table>
+			<table id="customerTable" class="table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Filename</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="file, rowStat: ${files}">
+                  <td th:text="${rowStat.count}">1</td>
+              <td th:text="${file.filename}">File-Name</td>
+                  <td><a th:href="${file.url}">Link</a></td>
+              </tr>
+          </tbody>
+        </table>
 		</div>
 		<div class="container">
 			<ul class="nav nav-pills">
@@ -59,4 +63,6 @@ th:href="@{/css/style.css}"/> -->
 	
 
 </body>
+
+
 </html>

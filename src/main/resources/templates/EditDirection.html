@@ -4,7 +4,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorator="template1"> 
 <head>
 <meta charset="utf-8"/>
-<title>departement</title>
+<title>direction</title>
   <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
   th:href="@{/css/bootstrap.min.css}"/>
   <link rel="stylesheet" type="text/css" href="../static/style.css"
@@ -15,13 +15,13 @@ layout:decorator="template1">
 <div layout:fragment="content">
 	<div >   <!-- //spacer ne fonctionne pas -->
 		<div class="panel panel-default">
-			<div class="panel-heading">modification d'une direction</div>
+			<div class="panel-heading">Modification d'une direction</div>
 			<div class="panel-body">
 				<form th:action="@{savedir}" method="post">
 				<div class="form-group">
 						<label class="controle-label">ID:</label>
 					
-					    <input class="form-control" type="text" name="directId"
+					    <input class="form-control" type="text" name="directId" readonly="true"
 					    th:value="${direction.directId}"/>
 					    <span class="red" th:errors="${direction.directId}"></span>
 					</div>
@@ -29,19 +29,23 @@ layout:decorator="template1">
 						<label class="controle-label">Nom de la direction:</label>
 					
 					    <input class="form-control" type="text" name="directName"
-					    th:value="${direction.directName}"/>
+					    th:value="${direction.directName}" required placeholder=""
+    oninvalid="this.setCustomValidity('Ce champ est OBLIGATOIRE')"
+    oninput="this.setCustomValidity('')"/>
 					    <span class="red" th:errors="${direction.directName}"></span>
 					</div>
 					<div class="form-group">
-						<label class="controle-label">nom du directeur</label>
+						<label class="controle-label">Nom du directeur</label>
 					
 					    <input class="form-control" type="text" name="directorName"
-					    th:value="${direction.directorName}"/>
+					    th:value="${direction.directorName}" required placeholder=""
+    oninvalid="this.setCustomValidity('Ce champ est OBLIGATOIRE')"
+    oninput="this.setCustomValidity('')"/>
 					     <span class="red" th:errors="${direction.directorName}"></span>
 					</div>
 					
 					
-					<button type="submit" class="btn btn-primary">save</button>
+					<button type="submit" class="btn btn-primary">Valider</button>
 				</form>
 			</div>
 		</div>

@@ -27,58 +27,102 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 			<div class="panel-body">
 				<form th:action="@{saveUser} " method="post">
 					<div class="form-group">
-						<label>username:</label>
+						<label>username:</label><span class=red> *</span>
 					
 					    <input class="form-control" type="text" name="username"
-					    th:value="${users.username}"/>
+					    th:value="${users.username}" required placeholder=""
+    oninvalid="this.setCustomValidity('Ce champ est OBLIGATOIRE')"
+    oninput="this.setCustomValidity('')"/>
 					    <span class="red" th:errors="${users.username}"></span>
 					</div>
 					
 					<div class="form-group">
-						<label>password:</label>
+						<label>password:</label><span class=red> *</span>
 					
 					    <input class="form-control" type="password" name="password"
-					    th:value="${users.password}"/>
+					    th:value="${users.password}" required placeholder=""
+    oninvalid="this.setCustomValidity('Ce champ est OBLIGATOIRE')"
+    oninput="this.setCustomValidity('')"/>
 					     <span class="red" th:errors="${users.password}"></span>
 					</div>
 					
 					<div class="form-group">
-						<label>Matricule:</label>
+						<label>Nom:</label><span class=red> *</span>
+					
+					    <input class="form-control" type="text" name="iniName"
+					    th:value="${users.iniName}" required placeholder=""
+    oninvalid="this.setCustomValidity('Ce champ est OBLIGATOIRE')"
+    oninput="this.setCustomValidity('')"/>
+					     <span class="red" th:errors="${users.iniName}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label>Prenom:</label><span class=red> *</span>
+					
+					    <input class="form-control" type="text" name="iniPrenom"
+					    th:value="${users.iniPrenom}" required placeholder=""
+    oninvalid="this.setCustomValidity('Ce champ est OBLIGATOIRE')"
+    oninput="this.setCustomValidity('')"/>
+					     <span class="red" th:errors="${users.iniPrenom}"></span>
+					</div>
+					
+					
+					<div class="form-group">
+						<label>Matricule:</label><span class=red> *</span>
 					
 					    <input class="form-control" type="text" name="matricule"
-					    th:value="${users.matricule}"/>
+					    th:value="${users.matricule}" required placeholder=""
+    oninvalid="this.setCustomValidity('Ce champ est OBLIGATOIRE')"
+    oninput="this.setCustomValidity('')"/>
 					     <span class="red" th:errors="${users.matricule}"></span>
 					</div>
 					
 					<div class="form-group">
-						<label>email:</label>
+						<label>email:</label><span class=red> *</span>
 					
-					    <input class="form-control" type="text" name="iniEmail"
-					    th:value="${users.iniEmail}"/>
+					    <input class="form-control" type="email" name="iniEmail"
+					    th:value="${users.iniEmail}" required placeholder="Entrer un Email valide"
+    oninvalid="this.setCustomValidity('Entrer un Email valide')"
+    oninput="this.setCustomValidity('')"/>
 					     <span class="red" th:errors="${users.iniEmail}"></span>
 					</div>
 					
-					
+					<!-- 
 					<div class="form-group">
-						<label>Direction:</label>
+						<label>Nom de la direction</label><span class=red> *</span>
+						
+						 <select id="directId"  name="directId"  >
+                    <option value="top">Direction</option>
+                    <option th:each="dir : ${directions}" th:value="${dir.directId}" th:text="${dir.directName}" >
+                   </option>
+
+                </select>
 					
-					    <input class="form-control" type="text" name="directName"
-					    th:value="${users.directName}"/>
-					     <span class="red" th:errors="${users.directName}"></span>
+					 
+					</div> -->
+					<div class="form-group">
+						<label>Nom du departement</label><span class=red> *</span>
+						
+						 <input class="form-control" type="hidden" name="NomDepart"
+									th:value="${NomDepart}" /> <select id="depId" name="depName"
+									onchange="document.getElementById('form').submit();"
+									class="form-control">
+									<option th:value="top" th:text="${selectDep}"></option>
+									<option th:each="dep : ${departements}"
+										th:value="${dep.depName}" th:text="${dep.depName}"></option>
+
+								</select> <br>
+					
+					 
 					</div>
-					<div class="form-group">
-						<label>Département:</label>
-					
-					    <input class="form-control" type="text" name="depName"
-					    th:value="${users.depName}"/>
-					     <span class="red" th:errors="${users.depName}"></span>
-					</div>
 					
 					<div class="form-group">
-						<label>télèphone:</label>
+						<label>téléphone:</label><span class=red> *</span>
 					
 					    <input class="form-control" type="text" name="iniNumTel"
-					    th:value="${users.iniNumTel}"/>
+					    th:value="${users.iniNumTel}" required  maxlength="15" 
+    oninvalid="this.setCustomValidity('La taille deverait être entre 10 et 15')"
+    oninput="this.setCustomValidity('')"/>
 					     <span class="red" th:errors="${users.iniNumTel}"></span>
 					</div>
 						<button type="submit" class="btn btn-primary">envoyer</button>

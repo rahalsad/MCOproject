@@ -12,25 +12,25 @@
 <body class="container spacer">
 	
 		<div class="container" layout:fragment="content" >
-			<form th:action="@{index}" method="get">
+			<form th:action="@{/init}" method="get">
 				<label>Mot Clé:</label> <input type="text" name="mc"
 					th:value="${mc}" />
 				<button class="btn btn-primary">Chercher</button>
 			</form>
 			<ul>
-			<li><a style="color:#000000" th:href="@{/form}">Ajouter membre</a></li>
+			<li><a style="color:#000000" th:href="@{/form}">Ajouter un membre</a></li>
 
 		</ul>
 		<div class="container">
-			<h3>Liste Des Initiateurs</h3>
+			<h3>Liste des initiateurs</h3>
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Name</th>
+						<th>Nom</th>
 						<th>Prénom</th>
 						<th>Email</th>
-						<th>Telephone</th>
+						<th>Téléphone</th>
 					</tr>
 
 				</thead>
@@ -42,9 +42,9 @@
 						<td th:text="${i.iniEmail}"></td>
 						<td th:text="${i.iniNumTel}"></td>
 						<td><a th:href="@{edit(id=i.iniId)}"></a></td>
-						<td><a th:href="@{edit(iniId=${i.iniId},page=${pageCourante},size=${size},mc=${mc})}">Edit</a></td>
-					    <td><a onclick="return confirm('Etes vous sure?')"
-							th:href="@{delete(iniId=${i.iniId},page=${pageCourante},size=${size},mc=${mc})}">Delete</a></td>
+						<td><a th:href="@{edit(iniId=${i.iniId},page=${pageCourante},size=${size},mc=${mc})}">Modifier</a></td>
+					    <td><a onclick="return confirm('Etes vous sure?')" class="changeBack"
+							th:href="@{delete(iniId=${i.iniId},page=${pageCourante},size=${size},mc=${mc})}">Supprimer</a></td>
 					</tr>
 
 				</tbody>
@@ -56,7 +56,7 @@
 			<ul class="nav nav-pills">
 				<li th:class="${pageCourante}==${status.index}?'active':''"
 					th:each="i,status:${pages}"><a
-					th:href="@{index(page=${status.index},size=${size},mc=${mc})}"
+					th:href="@{init(page=${status.index},size=${size},mc=${mc})}"
 					th:text="${status.index}"></a>
 				</li>
 			</ul>

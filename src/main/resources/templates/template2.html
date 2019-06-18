@@ -9,19 +9,79 @@ href="../static/css/style.css"
 th:href="@{/css/style.css}"/> -->
 <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/css/style.css}" />
+<link rel="icon" href="../static/Favicon.ico" th:href="@{../static/Favicon.ico}" type="image/x-icon">
+
+        <link rel="stylesheet" href="../static/css/normalize.css"  th:href="@{/css/normalize.css}">
+        <link rel="stylesheet" href="../static/css/chosen.min.css" th:href="@{/css/chosen.min.css}" >
+        <link rel="stylesheet" href="../static/css/jquery-ui.css" th:href="@{/css/jquery-ui.css}">
+        <link rel="stylesheet" href="../static/css/jquery-ui.min.css" th:href="@{/css/jquery-ui.min.css}">
+        <link rel="stylesheet" href="../static/css/tooltipster.bundle.min.css" th:href="@{/css/tooltipster.bundle.min.css}">
+        <link rel="stylesheet" href="../static/css/slick.css" th:href="@{/css/slick.css}">
+        <link rel="stylesheet" href="../static/css/slick-theme.css"  th:href="@{/css/slick-theme.css}">
+
+        <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
+        <script src="../static/js/vendor/jsapi.js" th:src="@{/js/vendor/jsapi.js}"></script>
+        <script src="../static/js/vendor/modernizr-2.8.3.min.js" th:src="@{/js/vendor/modernizr-2.8.3.min.js}"></script>
 <head>
 <meta charset="utf-8"/>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Interface Initiateur</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<header>
-	    
-		<div class="navbar">
-		 <div class="container-fluid" >
+<section class="global_container">
+    <!------------------------------- HEADER------------------------------------>
+	<header class="main_head clearfix">
+                <div>
+                    <button id="ticket-min" class="">
+                        <span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </span>
+                    </button>
+                    <button id="mobile_search">
+                        &nbsp;
+                    </button>
+                    <div class="logo_area">
+                        <img src="img/bp_logo.png" alt="">
+                    </div>
+
+                    <div class="option_list">
+                        <ul>
+                           
+                           <li>
+                                <a href="" class="profil_btn"></a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <!--div class="second_logo_area">
+                        <img src="img/chaabi_net.png" alt="">
+                    </div-->
+                    <!-- <div class="lang_area">
+                        <a href="">
+                            FR
+                        </a>
+                    </div> -->
+                </div>
+            </header>
+             <!------------------------------- FIN HEADER------------------------------------>
+                
+	    <!-------------------------------MENU------------------------------------>
+
+
+<aside class="sidebar_menu">
 			
-				<ul class="nav navbar-nav">
-					<li><a style="color:#000000" th:href="@{/fiche}">Demander une maintenance</a></li>
-					<li><a style="color:#000000" th:href="@{/historiqueIni}">Liste des Maintenances</a></li>
+				<ul >
+		
+			
+				
+					<li><a  th:href="@{/fiche}"><img src="img/logo1.png" class="carte_icone"><span>Demander une maintenance</span>
+						</a></li>
+					<li><a  th:href="@{/historiqueIni}"><img src="img/logo1.png" class="carte_icone"><span>Liste des Maintenances</span>
+					</a></li>
 			
 					
 					
@@ -29,18 +89,27 @@ th:href="@{/css/style.css}"/> -->
 							la liste des initiateurs</a></li> -->
 					
 				</ul>
-			</div>
-		</div>
+</aside>
+	  <!-------------------------------FIN MENU------------------------------------>
 	
-	</header>
 	<section layout:fragment="content">
 	</section>
-	<footer class="navbar-fixed-bottom">
-		<hr />
-		<div class="container">
-			<small>Copyright@2019</small>
-		</div>
-	</footer>
+	
+	  <!-------------------------------FOOTER------------------------------------>
+	<footer>
+                <div class="simple_footer">
+                    Copyright @ 2019 Groupe Banque Populaire - <a href="#">Mentions légales</a>
+                </div>
+     </footer>
+	
+	
+	
+      <script src="../static/js/vendor/jquery-1.11.3.min.js" th:src="@{/js/vendor/jquery-1.11.3.min.js}"></script>
+        <script type="text/javascript" src="../static/js/jquery-ui.min.js" th:src="@{/js/jquery-ui.min.js}"></script>
+        <script type="text/javascript" src="../static/js/jquery.dataTables.min.js" th:src="@{/js/jquery.dataTables.min.js}"></script>
+        <script type="text/javascript" src="../static/js/numeric-comma.js" th:src="@{/js/numeric-comma.js}"></script>
+        <script src="../static/js/plugins.js" th:src="@{/js/plugins.js}"></script>
+        <script src="../static/js/main.js" th:src="@{/js/main.js}"></script>
 	
    
 </body>

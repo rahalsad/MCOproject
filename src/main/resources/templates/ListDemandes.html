@@ -17,12 +17,12 @@
 			</form>
 			
 		<div class="container">
-			<h3>Liste Des Demandes</h3>
+			<h3>Liste des demandes</h3>
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Intitulé de la maintenance</th>
+						<th>Intitulée de la maintenance</th>
 						<th>Nom de l'application</th>
 						<th>date d'envoi</th>	
 					</tr>
@@ -31,10 +31,10 @@
 				<tbody>
 					<tr th:each="fs:${listFicheSuivis}" >
 						<td th:text="${fs.ref}">le referentiel</td>
-						<td th:text="${fs.intituleMaintenance}">Intitulé de la maintenance</td>
+						<td th:text="${fs.intituleMaintenance}">Intitulée de la maintenance</td>
 						<td th:text="${fs.NomApplication}">Application</td>
 						<td th:text="${fs.dateEnvoi}">Date Envoi</td>
-						<td><a th:href="@{editfiSui(ref=${fs.ref},page=${pageCourante},size=${sizef})}">Afficher</a></td>
+						<td><a th:href="@{editfiSui(ref=${fs.ref},page=${pageCourante},size=${size})}">Afficher</a></td>
 					</tr>
 
 				</tbody>
@@ -46,7 +46,7 @@
 			<ul class="nav nav-pills">
 				<li th:class="${pageCourante}==${status.index}?'active':''"
 					th:each="fs,status:${pages}"><a
-					th:href="@{listFicheSuivis(page=${status.index},size=${sizef})}"
+					th:href="@{listDemande(page=${status.index},size=${size})}"
 					th:text="${status.index}"></a>
 				</li>
 			</ul>

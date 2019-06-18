@@ -23,7 +23,7 @@ th:href="@{/css/style.css}"/> -->
 				<button class="btn btn-primary">Chercher</button>
 			</form>
 			<ul>
-			<li><a style="color:#000000" th:href="@{/formdir}">Ajouter direction</a></li>
+			<li><a style="color:#000000" th:href="@{/formdir}">Ajouter une direction</a></li>
 
 		</ul>
 	
@@ -47,9 +47,9 @@ th:href="@{/css/style.css}"/> -->
 						<td th:text="${d.directorName}"></td>
 						
 						<td><a th:href="@{editdir(id=d.directId)}"></a></td>
-						<td><a th:href="@{editdir(directId=${d.directId},page=${pageCourante},size=${size},mc1=${mc1})}">Edit</a></td>
+						<td><a th:href="@{editdir(directId=${d.directId},page=${pageCourante},size=${size},mc1=${mc1})}">Modifier</a></td>
 					    <td><a onclick="return confirm('Etes vous sure?')"
-							th:href="@{deletedir(directId=${d.directId},page=${pageCourante},size=${size},mc1=${mc1})}">Delete</a></td>
+							th:href="@{deletedir(directId=${d.directId},page=${pageCourante},size=${size},mc1=${mc1})}">Supprimer</a></td>
 						
 					</tr>
 

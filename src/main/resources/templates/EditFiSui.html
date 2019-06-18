@@ -4,7 +4,7 @@
 	layout:decorator="template3">
 <head>
 <meta charset="utf-8" />
-<title>modiffisui</title>
+<title>ficheSuivi</title>
 <link rel="stylesheet" type="text/css"
 	href="../static/css/bootstrap.min.css"
 	th:href="@{/css/bootstrap.min.css}" />
@@ -17,14 +17,14 @@
 		<div>
 			<!-- //spacer ne fonctionne pas -->
 			<div class="panel panel-default">
-				<div class="panel-heading">modification fiSui</div>
+				<div class="panel-heading">Modification d'une fiche de suivi</div>
 				<div class="panel-body">
 					<form th:action="@{/saveFicheSui}" method="post">
 <div class="form-group">
 						<label class="controle-label">Ref:</label>
 					
 					    <input class="form-control" type="text" name="ref"
-					    th:value="${ficheSuivi.ref}"/>
+					    th:value="${ficheSuivi.ref}" readonly="true"/>
 					    <span class="red" th:errors="${ficheSuivi.ref}"></span>
 					</div>
 						<div class="form-group">
@@ -34,7 +34,7 @@
 
 						</div>
 						<div class="form-group" >
-							<label>Departement:</label> <input class="form-control"
+							<label>Département:</label> <input class="form-control"
 								type="text" name="NomDepart" th:value="${ficheSuivi.NomDepart}" />
 							<span class="red" th:errors="${ficheSuivi.NomDepart}"></span>
 						</div>
@@ -58,7 +58,8 @@
 								class="red" th:errors="${ficheSuivi.intituleMaintenance}"></span>
 						</div>
 						<div class="form-group" th:object="${ficheSuivi}">
-							<label>Type de la maintenance</label> <select
+							<label>Type de la maintenance</label><span class=red> *</span>
+							 <select
 								class="form-control" id="ref" name="type">
 								<option th:value="'corrective'" th:text="corrective"></option>
 								<option th:value="'Améliorative'" th:text="Améliorative"></option>
@@ -68,28 +69,37 @@
 
 
 						<div class="form-group">
-							<label>date reception:</label> <input class="form-control"
+							<label>date de réception:</label> <input class="form-control"
 								type="text" name="dateEnvoi"
 								th:value="${ficheSuivi.dateEnvoi}" /> <span class="red"
 								th:errors="${ficheSuivi.dateEnvoi}"></span>
 
 						</div>
-						<div class="form-group">
-							<label>Nom du ResponsableMCO:</label> <input class="form-control"
-								type="text" name="respo" th:value="${ficheSuivi.respo}" /> <span
+						<div class="form-group" >
+							<label>Nom du Responsable MCO:</label> <span class=red> *</span>
+							<input class="form-control"
+								type="text" name="respo"
+								th:value="${ficheSuivi.respo}" required placeholder=""
+    oninvalid="this.setCustomValidity('Ce champ est OBLIGATOIRE')"
+    oninput="this.setCustomValidity('')" />  <span
 								class="red" th:errors="${ficheSuivi.respo}"></span>
 						</div>
 
 						<div class="form-group">
-							<label>Date de prise en charge:</label> <input
-								class="form-control" type="text" name="dateCharge"
-								th:value="${ficheSuivi.dateCharge}" />
+							<label>Date de prise en charge:</label> <span class=red> *</span><input
+								class="form-control" type="date" name="dateCharge" 
+								th:value="${ficheSuivi.dateCharge}" required placeholder=""
+    oninvalid="this.setCustomValidity('Ce champ est OBLIGATOIRE')"
+    oninput="this.setCustomValidity('')" />
+								<span class="red" th:errors="${ficheSuivi.dateCharge}"></span>
 						</div>
 
 						<div class="form-group">
-							<label>Charge estimée DEV:</label> <input class="form-control"
+							<label>Charge estimée DEV:</label><span class=red> *</span> <input class="form-control"
 								type="number" name="chargeEstim"
-								th:value="${ficheSuivi.chargeEstim}" id="chargeEstim" onblur="calcul()" />
+								th:value="${ficheSuivi.chargeEstim}" id="chargeEstim" onblur="calcul()" required placeholder=""
+    oninvalid="this.setCustomValidity('Ce champ est OBLIGATOIRE')"
+    oninput="this.setCustomValidity('')"/>
 							<span class="red" th:errors="${ficheSuivi.chargeEstim}"></span>
 						</div>
 
@@ -97,17 +107,17 @@
 						<div class="form-group">
 							<label>Charge consommée :</label> <input class="form-control"
 								type="number" name="chargeConsom"
-								th:value="${ficheSuivi.chargeConsom}" id="chargeConsom"  onblur="calcul()" />
+								th:value="${ficheSuivi.chargeConsom}" id="chargeConsom"  onblur="calcul()"  />
 							<span class="red" th:errors="${ficheSuivi.chargeConsom}"></span>
 						</div>
 						<div class="form-group">
 							<label>Taux d'avancement :</label> <input class="form-control"
-								type="text" readonly="true" name="tauxAvanc" th:value="${ficheSuivi.tauxAvanc}"  id="tauxAvanc" />
+								type="number" readonly="true" name="tauxAvanc" th:value="${ficheSuivi.tauxAvanc}"  id="tauxAvanc" />
 							<span class="red" th:errors="${ficheSuivi.tauxAvanc}"></span>
 						</div>
 
 						<div class="form-group" th:object="${ficheSuivi}">
-							<label>Statut de la maintenance: </label> -->
+							<label>Statut de la maintenance: </label> <span class=red> *</span>
 							
 							<select class="form-control" id="ref" name="statut">
 								<option th:value="'Annalyse'" th:text="Annalyse"></option>
@@ -122,25 +132,28 @@
 							</select>
 						</div>
 						<div class="form-group">
-							<label>Date mise en production :</label> <input
-								class="form-control" type="text" name="dateProd"
-								th:value="${ficheSuivi.dateProd}" />
+							<label>Date mise en production :</label><input
+								class="form-control" type="date" name="dateProd"
+								th:value="${ficheSuivi.dateProd}"   />
+								<span class="red" th:errors="${ficheSuivi.dateProd}"></span>
 
 						</div>
 						<div class="form-group">
-							<label>Date de la dernière modification :</label> <input
+							<label>Date de la dernière modification :</label> <span class=red> *</span><input
 								class="form-control"  id="d1" type="text" name="dateModif"
 								th:value="${ficheSuivi.dateModif}" />
+								<span class="red" th:errors="${ficheSuivi.dateModif}"></span>
 
 						</div>
 						<div class="form-group">
 							<label>Motif et Remarques:</label> <input
 								class="form-control"   type="text" name="remarque"
 								th:value="${ficheSuivi.remarque}" />
+								<span class="red" th:errors="${ficheSuivi.remarque}"></span>
 
 						</div>
 
-						<button type="submit" class="btn btn-primary">save</button>
+						<button type="submit" class="btn btn-primary">Valider</button>
 					</form>
 				</div>
 
@@ -153,7 +166,7 @@ if(m1<10)
 var dt1 = d1.getDate();
 if(dt1<10)
 dt1 = "0"+dt1;
-var d2 = dt1+"-"+m1+"-"+y1;
+var d2 = dt1+"/"+m1+"/"+y1;
 document.getElementById('d1').value=d2;
 </script>
 <script type="text/javascript">
@@ -164,7 +177,7 @@ function calcul(){
                 var c2 =document.getElementById("chargeConsom").value;
  
                 tauxAvanc = (c2/c1)*100;
-                document.getElementById("tauxAvanc").value =tauxAvanc+"%" ;
+                document.getElementById("tauxAvanc").value =tauxAvanc;
             }
  
 </script>  

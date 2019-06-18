@@ -4,7 +4,7 @@
 	layout:decorator="template1">
 <head>
 <meta charset="utf-8" />
-<title>departement</title>
+<title>département</title>
 <!-- <link rel="stylesheet" type="text/css"
 	href="../static/css/bootstrap.min.css"
 	th:href="@{/css/bootstrap.min.css}" />
@@ -23,16 +23,16 @@ th:href="@{/css/style.css}"/> -->
 				<button class="btn btn-primary">Chercher</button>
 			</form>
 			<ul>
-			<li><a style="color:#000000" th:href="@{/formdep}">Ajouter departement</a></li>
+			<li><a style="color:#000000" th:href="@{/formdep}">Ajouter un département</a></li>
 
 		</ul>
 		<div class="container">
-			<h3>Liste Des departement</h3>
+			<h3>Liste des départements</h3>
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Nom du departement</th>
+						<th>Nom du département</th>
 						<th>Nom du directeur</th>
 					    
 					</tr>
@@ -44,9 +44,9 @@ th:href="@{/css/style.css}"/> -->
 						<td th:text="${p.depName}"></td>
 						<td th:text="${p.directDep}"></td>
 						<td><a th:href="@{editdep(id=p.depId)}"></a></td>
-						<td><a th:href="@{editdep(depId=${p.depId},page=${pageCourante},size=${size},mc2=${mc2})}">Edit</a></td>
+						<td><a th:href="@{editdep(depId=${p.depId},page=${pageCourante},size=${size},mc2=${mc2})}">Modifier</a></td>
 					    <td><a onclick="return confirm('Etes vous sure?')"
-							th:href="@{deletedep(depId=${p.depId},page=${pageCourante},size=${size},mc2=${mc2})}">Delete</a></td>
+							th:href="@{deletedep(depId=${p.depId},page=${pageCourante},size=${size},mc2=${mc2})}">Supprimer</a></td>
 					</tr>
 
 				</tbody>

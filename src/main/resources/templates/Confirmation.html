@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
- xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorator="template1"> 
 <head>
 <meta charset="utf-8"/>
 <title>initiateur</title>
- <link rel="stylesheet" type="text/css"
-href="../static/css/bootstrap.min.css"
-th:href="@{/css/bootstrap.min.css}"/>
-<link rel="stylesheet" type="text/css"
-href="../static/css/style.css"
-th:href="@{/css/style.css}"/>
+  <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+  th:href="@{/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" type="text/css" href="../static/style.css"
+  th:href="@{/css/style.css}"/>
 </head>
-<body>
+<body class="container spacer">
 <!-- afficher un formulaire de saisi -->
-   <div layout:fragment="content" >
-	<div class="container spacer col-md-6 col-xs-12" >
-		<div class="panel panel-default">
-			<div class="panel-heading">Confirmation</div>
+<div layout:fragment="content">
+	<div >   <!-- //spacer ne fonctionne pas -->
+		
+			<div class="panel-heading">Modification d'un initiateur</div>
+			
+			<br>
 			<div class="panel-body">
 				<div class="form-group">
 					<label>ID:</label>
@@ -28,7 +28,7 @@ th:href="@{/css/style.css}"/>
 					<label th:text="${initiateur.iniName}"></label>
 				</div>
 				<div class="form-group">
-				    <label>Prenom:</label>
+				    <label>Prénom:</label>
 					<label th:text="${initiateur.iniPrenom}"></label>
 				</div>
 				<div class="form-group">
@@ -36,7 +36,7 @@ th:href="@{/css/style.css}"/>
 					<label th:text="${initiateur.iniEmail}"></label>
 				</div>
 				<div class="form-group">
-				    <label>NumTele:</label>
+				    <label>Téléphone:</label>
 					<label th:text="${initiateur.iniNumTel}"></label>
 				</div>
 			</div>	

@@ -18,94 +18,109 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Demande de Maintenance</div>
 				<div class="panel-body">
-					<div class="form-group">							
-                   <label>Département:</label>
-                  
-						<form th:action="@{/fiche}" method="get" id="form" >
-						 
+					<div class="form-group">
+						<label>Département:</label><span class=red> *</span>
+
+						<form th:action="@{/fiche}" method="get" id="form">
+
 							<div class="div_box" th:action="@{/fiche}" method="get" id="form">
-							<input class="form-control"
-									type="hidden" name="NomDepart" th:value="${NomDepart}" />
-								<select id="depId" name="depName"
-									onchange="document.getElementById('form').submit();">
+								<input class="form-control" type="hidden" name="NomDepart"
+									th:value="${NomDepart}" /> <select id="depId" name="depName"
+									onchange="document.getElementById('form').submit();"
+									class="form-control">
 									<option th:value="top" th:text="${selectDepartement}"></option>
-									<option th:each="dep : ${departement}" th:value="${dep.depName}"
-										th:text="${dep.depName}"></option>
+									<option th:each="dep : ${departement}"
+										th:value="${dep.depName}" th:text="${dep.depName}"></option>
 
 								</select> <br>
-
-							</div>
-							
-						</form>
-						</div>
-
-						<form th:action="@{/saveFiche}" method="post">
-						<div class="form-group">
-								 <input type="hidden" name="NomDepart" th:value="${ficheSuivi.NomDepart}" />
-							</div>
-							<div class="form-group">
-								<label>Initiateur:</label> <input class="form-control"
-									type="text" name="iniName" th:value="${ficheSuivi.iniName}" />
-								<span class="red" th:errors="${ficheSuivi.iniName}"></span>
-							</div>
-	
-							<div class="form-group">
-								<label>Direction:</label> <input class="form-control"
-									type="text" name="NomDirection" th:value="${directName}" /> <span
-									class="red" th:errors="${ficheSuivi.NomDirection}"></span>
 							</div>
 
-							<div class="form-group">
-								<label>Application:</label> <input class="form-control"
-									type="text" name="NomApplication"
-									th:value="${ficheSuivi.NomApplication}" /> <span class="red"
-									th:errors="${ficheSuivi.NomApplication}"></span>
-							</div>
-
-
-							<div class="form-group">
-								<label>Intitulé de la maintenance:</label> <input
-									class="form-control" type="text" name="intituleMaintenance"
-									th:value="${ficheSuivi.intituleMaintenance}" /> <span
-									class="red" th:errors="${ficheSuivi.intituleMaintenance}"></span>
-							</div>
-
-
-
-							<button type="submit" class="btn btn-primary">Envoyer</button>
-
-							
 						</form>
 					</div>
+
+					<form th:action="@{/saveFiche}" method="post">
+						<div class="form-group">
+							<input type="hidden" name="NomDepart"
+								th:value="${ficheSuivi.NomDepart}" />
+						</div>
+						<div class="form-group">
+							<label>Initiateur:</label> <span class=red> *</span><input
+								class="form-control" type="text" name="iniName"
+								th:value="${ficheSuivi.iniName}" required placeholder=""
+    oninvalid="this.setCustomValidity('Ce champ est OBLIGATOIRE')"
+    oninput="this.setCustomValidity('')" /> 
+   
+						</div>
+
+						<div class="form-group">
+							<label>Direction:</label> <input class="form-control" type="text"
+								name="NomDirection" th:value="${directName}"  readonly="true"/> <span
+								class="red" th:errors="${ficheSuivi.NomDirection}"></span>
+						</div>
+
+						<div class="form-group">
+
+							<label>Application:</label> <span class=red> *</span>
+
+							<!-- 							<input -->
+							<!-- 								class="form-control" type="text" name="NomApplication" -->
+							<!-- 								th:value="${ficheSuivi.NomApplication}" /> <span class="red" -->
+							<!-- 								th:errors="${ficheSuivi.NomApplication}"></span> -->
+							<input class="form-control" type="hidden" name="NomApplication"
+								th:value="${NomApplication}" /> <select name="NomApplication"
+								class="form-control" >
+                                <option th:value="top" th:text="${selectApp}"></option>
+								<option th:each="app : ${applications}" th:value="${app.appName}"
+									th:text="${app.appName}"></option>
+							</select> 
+							<span class="red" th:errors="${ficheSuivi.NomApplication}"></span>
+
+						</div>
+
+
+						<div class="form-group">
+							<label>Intitulée de la maintenance:</label><span class=red>
+								*</span> <input class="form-control" type="text"
+								name="intituleMaintenance"
+								th:value="${ficheSuivi.intituleMaintenance}" required placeholder=""
+    oninvalid="this.setCustomValidity('Ce champ est OBLIGATOIRE')"
+    oninput="this.setCustomValidity('')"/> <span
+								class="red" th:errors="${ficheSuivi.intituleMaintenance}"></span>
+						</div>
+
+
+						<button type="submit" class="btn btn-primary">Envoyer</button>
+
+
+					</form>
 				</div>
 			</div>
-
-
-			<script
-				src="https://ajax.googleapis.com/ajax/libs/  
-                  jquery/3.3.1/jquery.min.js"></script>
-
-
-			<script type="text/javascript">
-				d = new Date();
-				document.write("<p>Date : <span style='color:#8aa;'>");
-				document.write(d.toLocaleDateString());
-				document.write("</span></p>");
-			</script>
-
-			<script type="text/javascript">
-				var d1 = new Date();
-				var y1 = d1.getFullYear();
-				var m1 = d1.getMonth() + 1;
-				if (m1 < 10)
-					m1 = "0" + m1;
-				var dt1 = d1.getDate();
-				if (dt1 < 10)
-					dt1 = "0" + dt1;
-				var d2 = y1 + "-" + m1 + "-" + dt1;
-			</script>
-			
-
-
 		</div>
+
+
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+		<script type="text/javascript">
+			d = new Date();
+			document.write("<p>Date : <span style='color:#8aa;'>");
+			document.write(d.toLocaleDateString());
+			document.write("</span></p>");
+		</script>
+
+		<script type="text/javascript">
+			var d1 = new Date();
+			var y1 = d1.getFullYear();
+			var m1 = d1.getMonth() + 1;
+			if (m1 < 10)
+				m1 = "0" + m1;
+			var dt1 = d1.getDate();
+			if (dt1 < 10)
+				dt1 = "0" + dt1;
+			var d2 = y1 + "-" + m1 + "-" + dt1;
+		</script> -->
+
+
+
+	</div>
 </body>

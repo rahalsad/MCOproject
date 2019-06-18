@@ -1,0 +1,12 @@
+@CHARSET "ISO-8859-1";
+ input {
+        width: 70%;
+        border: 1px solid orange ;
+        border-radius:50px 20px;
+        box-sizing: border-box;
+        font-family: Helvetica;
+        font-size: 15px;
+        color: inherit;
+        background: transparent;
+        outline-width: 0px;
+    }
